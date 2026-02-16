@@ -23,11 +23,13 @@ const bscTestnet: Chain = {
   },
 };
 
+const rpcUrl = process.env.NEXT_PUBLIC_RPC_URL || 'https://bsc-testnet-rpc.publicnode.com';
+
 const config = createConfig({
   chains: [bscTestnet],
   connectors: [injected()],
   transports: {
-    [bscTestnet.id]: http(),
+    [bscTestnet.id]: http(rpcUrl),
   },
 });
 

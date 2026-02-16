@@ -32,10 +32,11 @@ export default function FaucetPage() {
     if (!address) return;
     setStatus(`Minting ${label}...`);
     try {
-      await writeContractAsync({ address: token, abi: mintAbi, functionName: "mint", args: [address, parseUnits(amount || "0", decimals)] });
-      setStatus(`${label} minted`);
-    } catch (e) {
-      setStatus(`${label} mint failed`);
+      const hash = await writeContractAsync({ address: token, abi: mintAbi, functionName: "mint", args: [address, parseUnits(amount || "0", decimals)] });
+      setStatus(`${label} minted — ${hash.slice(0, 10)}…`);
+    } catch (e: any) {
+      console.error('mint failed', e);
+      setStatus(`${label} mint failed — ${e?.shortMessage || e?.message || 'unknown error'}`);
     }
   };
 
