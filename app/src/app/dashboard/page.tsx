@@ -353,18 +353,35 @@ function Dashboard() {
       const hash = res && typeof (res as Promise<unknown>).then === "function"
         ? await (res as Promise<`0x${string}` | void>)
         : (res as `0x${string}` | void);
+
       if (!hash) {
         showToast(`${label} not sent`, "error");
         return;
       }
+
       setLastTx(hash);
       showToast(`${label} sent ${hash.slice(0, 6)}…${hash.slice(-4)}`, "success");
+
       if (publicClient) {
-        await publicClient.waitForTransactionReceipt({ hash });
+        try {
+          await publicClient.waitForTransactionReceipt({ hash });
+          showToast(`${label} confirmed`, "success");
+        } catch (e: any) {
+          // RPC flakiness is common on testnets. If we already have a hash, don't claim failure.
+          console.error(`${label} receipt wait failed`, e);
+          showToast(`${label} sent (check explorer)`, "success");
+        }
       }
-      showToast(`${label} confirmed`, "success");
+
       refreshAll();
-    } catch (e) {
+    } catch (e: any) {
+      console.error(`${label} failed`, e);
+      const msg = e?.shortMessage || e?.message || "";
+      // User rejected signature -> not a protocol failure
+      if (msg.toLowerCase().includes("user rejected") || msg.toLowerCase().includes("denied")) {
+        showToast(`${label} cancelled`, "error");
+        return;
+      }
       showToast(`${label} failed`, "error");
     }
   }
