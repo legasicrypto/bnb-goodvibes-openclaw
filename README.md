@@ -1,10 +1,10 @@
 # Legasi — Agentic Commerce
 
-**x402 Payment Protocol + Credit Infrastructure for AI Agents on SKALE.**
+**x402 Payment Protocol + Credit Infrastructure for AI Agents on BNB Chain.**
 
 > 🛒 **Agentic Commerce**: AI agents buying, selling, and paying for services — autonomously.
 
-🌐 **Live Demo:** https://evm.legasi.io
+🌐 **Live Demo:** https://bnb.legasi.io
 
 ---
 
@@ -24,7 +24,7 @@ Legasi implements **x402 (HTTP 402 Payment Required)** for the agentic economy:
 Agent → Service (HTTP 402) → Agent pays via x402Receipt → Service delivers
 ```
 
-### Why SKALE?
+### Why BNB Chain?
 
 - **Zero gas** — Perfect for high-frequency x402 payments
 - **Fast finality** — Sub-second confirmations
@@ -70,8 +70,8 @@ See `docs/DEPLOYMENTS.md` for full details.
 
 ### 1. Run the Demo (60 seconds)
 
-1. Open https://evm.legasi.io
-2. Connect MetaMask on **SKALE Base Sepolia**
+1. Open https://bnb.legasi.io
+2. Connect MetaMask on **BNB Smart Chain Testnet**
 3. Get test tokens via **Faucet**
 4. Supply collateral → Borrow → Repay → Withdraw
 
@@ -79,8 +79,8 @@ See `docs/DEPLOYMENTS.md` for full details.
 
 ```bash
 # Clone
-git clone https://github.com/legasicrypto/skale-hackathon
-cd skale-hackathon
+git clone https://github.com/legasicrypto/bnb-goodvibes-openclaw
+cd BNB Chain-hackathon
 
 # Install
 npm install
@@ -88,7 +88,7 @@ cd app && npm install && cd ..
 
 # Configure
 cp .env.example .env
-# Add SKALE_RPC + DEPLOYER_PK
+# Add BSC_TESTNET_RPC + DEPLOYER_PK
 
 # Compile
 npx hardhat compile
@@ -97,7 +97,7 @@ npx hardhat compile
 npx hardhat test
 
 # Deploy
-npx hardhat run scripts/deploy-all.ts --network skale
+npx hardhat run scripts/deploy-all.ts --network BNB Chain
 ```
 
 ### 3. Frontend
@@ -180,7 +180,7 @@ import { privateKeyToAccount } from 'viem/accounts';
 
 const wallet = createWalletClient({
   account: privateKeyToAccount('0x...'),
-  chain: skaleBaseSepolia,
+  chain: bscTestnet,
   transport: http(RPC),
 });
 
@@ -220,7 +220,7 @@ See `docs/AGENT_FLOW.md` for complete examples.
 ## Repo Structure
 
 ```
-skale-hackathon/
+BNB Chain-hackathon/
 ├── contracts/           # Solidity smart contracts
 │   ├── LegasiCore.sol
 │   ├── LegasiLending.sol
@@ -244,10 +244,10 @@ skale-hackathon/
 
 ## Links
 
-- 🌐 **Live Demo:** https://evm.legasi.io
+- 🌐 **Live Demo:** https://bnb.legasi.io
 - 🐦 **Twitter:** [@legasi_xyz](https://x.com/legasi_xyz)
-- 📖 **GitHub:** [legasicrypto/skale-hackathon](https://github.com/legasicrypto/skale-hackathon)
+- 📖 **GitHub:** [legasicrypto/bnb-goodvibes-openclaw](https://github.com/legasicrypto/bnb-goodvibes-openclaw)
 
 ---
 
-*Built for the SKALE Hackathon 2026*
+*Built for the BNB Chain Hackathon 2026*

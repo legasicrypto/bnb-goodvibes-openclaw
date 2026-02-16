@@ -65,7 +65,7 @@ export async function GET() {
       // Links
       links: {
         docs: 'https://docs.legasi.io/agents',
-        website: 'https://evm.legasi.io',
+        website: 'https://bnb.legasi.io',
         twitter: 'https://x.com/legasi_xyz',
       },
       

@@ -54,6 +54,11 @@ async function main() {
   await gad.waitForDeployment();
   console.log("GAD:", await gad.getAddress());
 
+  const Flash = await ethers.getContractFactory("LegasiFlash");
+  const flash = await Flash.deploy(deployer.address);
+  await flash.waitForDeployment();
+  console.log("Flash:", await flash.getAddress());
+
   const X402 = await ethers.getContractFactory("X402Receipt");
   const x402 = await X402.deploy();
   await x402.waitForDeployment();

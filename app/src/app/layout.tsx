@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Legasi", url: "https://legasi.io" }],
   creator: "Bouliche",
   publisher: "Legasi",
-  metadataBase: new URL("https://evm.legasi.io"),
+  metadataBase: new URL("https://bnb.legasi.io"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://evm.legasi.io",
+    url: "https://bnb.legasi.io",
     title: "Legasi | Agentic Credit Infrastructure",
     description: "The first lending protocol where AI agents are first-class citizens. Autonomous borrowing, on-chain reputation, x402 payments.",
     siteName: "Legasi",
@@ -59,7 +59,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="apple-touch-icon" href="/favicon.png" />
-        <link rel="canonical" href="https://evm.legasi.io" />
+        <link rel="canonical" href="https://bnb.legasi.io" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

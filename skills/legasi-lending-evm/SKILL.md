@@ -1,13 +1,13 @@
 ---
 name: legasi-lending-evm
-description: Autonomous USDC borrowing for AI agents on SKALE Base Sepolia. Deposit collateral, borrow USDC, earn LP yield, use flash loans.
-homepage: https://evm.legasi.io
+description: Autonomous USDC borrowing for AI agents on BNB Smart Chain Testnet. Deposit collateral, borrow USDC, earn LP yield, use flash loans.
+homepage: https://bnb.legasi.io
 metadata: {"clawdbot":{"emoji":"⚡","requires":{"bins":["node","npm"]}}}
 ---
 
 # Legasi Lending (EVM) Skill
 
-Enable your agent to borrow USDC, earn yield, and execute flash loans on **SKALE Base Sepolia**.
+Enable your agent to borrow USDC, earn yield, and execute flash loans on **BNB Smart Chain Testnet**.
 
 ## Contracts
 
@@ -21,7 +21,7 @@ const CONTRACTS = {
   usdc: "0x8692A9d69113E1454C09c631AdE12949E5c11306",
   weth: "0x1eA5C029D6aea21f066D661CA7B6f5404Cd4d409",
 };
-const RPC = 'https://base-sepolia-testnet.skalenodes.com/v1/jubilant-horrible-ancha';
+const RPC = 'https://bsc-testnet-rpc.publicnode.com';
 ```
 
 ## Quick Start

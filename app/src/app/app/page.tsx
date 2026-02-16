@@ -7,7 +7,7 @@ export default function AppPage() {
     <main className="min-h-screen bg-[#001520] text-white px-6 py-16">
       <h1 className="text-3xl font-bold">Legasi — EVM App</h1>
       <p className="mt-4 text-[#8a9aa8]">
-        EVM frontend wiring in progress. Contracts are deployed on SKALE Base Sepolia.
+        EVM frontend wiring in progress. Contracts are deployed on BNB Smart Chain Testnet.
       </p>
       <div className="mt-8 flex gap-4">
         <Link href="/" className="underline">Home</Link>

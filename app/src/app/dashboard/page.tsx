@@ -511,14 +511,14 @@ function Dashboard() {
                       <div className="flex gap-2 mb-4">
                         {(["USDC"] as const).map((asset) => (
                           <button key={asset} onClick={() => setBorrowAsset(asset)} className="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 bg-[#FF4E00]/20 text-[#FF4E00] border border-[#FF4E00]">
-                            USDC.e <span className="text-xs opacity-60">{borrowApy}% APY</span>
+                            USDC <span className="text-xs opacity-60">{borrowApy}% APY</span>
                           </button>
                         ))}
                       </div>
                       <div className="flex gap-3 mb-4">
                         <div className="flex-1 relative">
                           <input type="number" placeholder="0.00" value={borrowAmount} onChange={(e) => setBorrowAmount(e.target.value)} className="w-full h-14 bg-[#001520] border border-[#0a2535] rounded-xl px-4 pr-20 text-white placeholder-[#3a4a58] focus:outline-none focus:border-[#FF4E00] transition-all" />
-                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6a7a88] text-sm font-medium">USDC.e</span>
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6a7a88] text-sm font-medium">USDC</span>
                         </div>
                         <button onClick={() => setBorrowAmount(maxBorrow.toFixed(2))} className="h-14 px-4 bg-[#0a2535] hover:bg-[#1a3545] text-[#FF4E00] font-medium rounded-xl transition-all">MAX</button>
                         <button onClick={() => safeTx(async () => {
@@ -554,7 +554,7 @@ function Dashboard() {
                       <div className="flex gap-3 mb-4">
                         <div className="flex-1 relative">
                           <input type="number" placeholder="0.00" value={repayAmount} onChange={(e) => setRepayAmount(e.target.value)} className="w-full h-14 bg-[#001520] border border-[#0a2535] rounded-xl px-4 pr-20 text-white placeholder-[#3a4a58] focus:outline-none focus:border-[#4ade80] transition-all" />
-                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6a7a88] text-sm font-medium">USDC.e</span>
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6a7a88] text-sm font-medium">USDC</span>
                         </div>
                         <div className="h-14 px-4 flex items-center text-xs text-[#6a7a88]">Auto‑approve included</div>
                         <button onClick={() => safeTx(async () => {
@@ -711,7 +711,7 @@ function Dashboard() {
                   </div>
                   <div>
                     <div className="text-xs text-[#6a7a88] mb-2">Borrowed</div>
-                    <div className="text-sm text-white">{borrowedAmountUSDC.toFixed(2)} USDC.e</div>
+                    <div className="text-sm text-white">{borrowedAmountUSDC.toFixed(2)} USDC</div>
                   </div>
                 </div>
 
@@ -747,7 +747,7 @@ function Dashboard() {
             {/* LP Overview */}
             <div className="grid grid-cols-2 gap-4 mb-8">
               <MetricCard label="Your LP Value" value={`$${lpTotalValue.toFixed(2)}`} />
-              <MetricCard label="USDC.e APY" value={`${supplyApy.toFixed(1)}%`} color="#4ade80" />
+              <MetricCard label="USDC APY" value={`${supplyApy.toFixed(1)}%`} color="#4ade80" />
             </div>
 
             <div className="grid lg:grid-cols-3 gap-6">
@@ -782,7 +782,7 @@ function Dashboard() {
 
                   {/* Asset selector */}
                   <div className="flex gap-2 mb-4">
-                    {(["USDC.e"] as const).map((asset) => (
+                    {(["USDC"] as const).map((asset) => (
                       <button
                         key={asset}
                         onClick={() => setLpAsset("USDC")}
@@ -804,7 +804,7 @@ function Dashboard() {
                         className="w-full h-14 bg-[#001520] border border-[#0a2535] rounded-xl px-4 pr-20 text-white placeholder-[#3a4a58] focus:outline-none focus:border-[#4ade80] transition-all"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6a7a88] text-sm font-medium">
-                        USDC.e
+                        USDC
                       </span>
                     </div>
                     {lpTab === "withdraw" && (
@@ -840,8 +840,8 @@ function Dashboard() {
 
                   <div className="mt-6 p-4 bg-[#001520]/50 rounded-xl space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-[#6a7a88]">Your USDC.e in pool</span>
-                      <span className="text-white font-semibold">{lpPosition.USDC.toFixed(2)} USDC.e</span>
+                      <span className="text-[#6a7a88]">Your USDC in pool</span>
+                      <span className="text-white font-semibold">{lpPosition.USDC.toFixed(2)} USDC</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-[#6a7a88]">Estimated yearly earnings</span>
@@ -859,7 +859,7 @@ function Dashboard() {
                   <h3 className="text-sm font-medium text-[#8a9aa8] mb-4">Your LP Positions</h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center py-2">
-                      <span className="text-white">USDC.e</span>
+                      <span className="text-white">USDC</span>
                       <div className="text-right">
                         <div className="text-white font-medium">{lpPosition.USDC.toFixed(2)}</div>
                         <div className="text-xs text-[#4ade80]">{supplyApy.toFixed(1)}% APY</div>
@@ -871,7 +871,7 @@ function Dashboard() {
                 <div className="p-5 bg-[#051525]/80 border border-[#0a2535] rounded-2xl backdrop-blur-sm">
                   <h3 className="text-sm font-medium text-[#8a9aa8] mb-4">Pool Statistics</h3>
                   <div className="space-y-3">
-                    <InfoRow label="Total USDC.e Pool" value="$1.2M" />
+                    <InfoRow label="Total USDC Pool" value="$1.2M" />
                     <InfoRow label="Utilization Rate" value={`${protocolStats.utilization}%`} />
                   </div>
                 </div>

@@ -1,10 +1,10 @@
-# Demo Flow — SKALE Hackathon
+# Demo Flow — BNB Chain Hackathon
 
 ## 5-Minute Demo Script
 
 ### Setup (30s)
-1. Open https://evm.legasi.io
-2. Connect MetaMask on **SKALE Base Sepolia**
+1. Open https://bnb.legasi.io
+2. Connect MetaMask on **BNB Smart Chain Testnet**
 3. Go to **Faucet** → click **"Mint All Tokens"**
 
 ### Credit Flow (2min)
@@ -29,7 +29,7 @@
 3. Explain: agents can borrow autonomously within limits
 
 ### Key Differentiators (1min)
-- **Zero gas**: SKALE provides gasless transactions
+- **Zero gas**: BNB Chain provides gasless transactions
 - **Reputation on-chain**: Score improves with repayments
 - **Gradual deleveraging**: No sudden liquidations
 - **x402 native**: HTTP 402 payments for agent services

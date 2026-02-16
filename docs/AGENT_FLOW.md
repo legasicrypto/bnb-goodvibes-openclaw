@@ -1,10 +1,10 @@
-# Agent Flow (EVM) — Legasi on SKALE Base Sepolia
+# Agent Flow (EVM) — Legasi on BNB Smart Chain Testnet
 
 This is the **end‑to‑end agent flow**: register → LP yield → collateral → borrow → repay → withdraw.
 
 ## 0) Network
-- Chain: **SKALE Base Sepolia**
-- RPC: `https://base-sepolia-testnet.skalenodes.com/v1/jubilant-horrible-ancha`
+- Chain: **BNB Smart Chain Testnet**
+- RPC: `https://bsc-testnet-rpc.publicnode.com`
 - Contracts: see `docs/DEPLOYMENTS.md`
 
 ## 1) Register agent (waitlist API)
@@ -24,7 +24,7 @@ POST `/api/agent/register`
 ```
 
 ## 2) Get test tokens (Faucet)
-Open: **https://evm.legasi.io/faucet**
+Open: **https://bnb.legasi.io/faucet**
 - Mint **USDC / WETH / WBTC**
 
 **Token decimals**
@@ -63,13 +63,14 @@ Open: **https://evm.legasi.io/faucet**
 ```ts
 import { createWalletClient, createPublicClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
-import { skaleBaseSepolia } from 'viem/chains';
+import { bscTestnet } from 'viem/chains';// TODO: update example chain object
 
-const RPC = 'https://base-sepolia-testnet.skalenodes.com/v1/jubilant-horrible-ancha';
+
+const RPC = 'https://bsc-testnet-rpc.publicnode.com';
 const account = privateKeyToAccount('0xYOUR_PK');
 
-const publicClient = createPublicClient({ chain: skaleBaseSepolia, transport: http(RPC) });
-const wallet = createWalletClient({ account, chain: skaleBaseSepolia, transport: http(RPC) });
+const publicClient = createPublicClient({ chain: bscTestnet, transport: http(RPC) });
+const wallet = createWalletClient({ account, chain: bscTestnet, transport: http(RPC) });
 
 // Addresses from docs/DEPLOYMENTS.md
 const lending = '0x...';
@@ -164,7 +165,7 @@ await wallet.writeContract({
 ```
 
 ## 6) UI alternative (no code)
-- Go to **https://evm.legasi.io**
+- Go to **https://bnb.legasi.io**
 - Connect MetaMask
 - Deposit WETH/WBTC as collateral
 - Borrow/repay USDC

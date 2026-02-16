@@ -1,8 +1,8 @@
-# Deployments — SKALE Base Sepolia
+# Deployments — BNB Smart Chain Testnet
 
-**Network:** SKALE Base Sepolia  
+**Network:** BNB Smart Chain Testnet  
 **Chain ID:** 1444673419  
-**RPC:** `https://base-sepolia-testnet.skalenodes.com/v1/jubilant-horrible-ancha`
+**RPC:** `https://bsc-testnet-rpc.publicnode.com`
 
 ## Core Protocol
 
@@ -20,7 +20,7 @@
 
 | Token | Address | Decimals |
 |-------|---------|----------|
-| **USDC.e** | `0x8692A9d69113E1454C09c631AdE12949E5c11306` | 6 |
+| **USDC** | `0x8692A9d69113E1454C09c631AdE12949E5c11306` | 6 |
 | **WETH** | `0x1eA5C029D6aea21f066D661CA7B6f5404Cd4d409` | 6 |
 | **WBTC** | `0x7787dC83291C37d349D9523D028771914679f4C5` | 8 |
 

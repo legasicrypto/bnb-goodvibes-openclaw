@@ -15,7 +15,7 @@ export default function Home() {
           <div className="hidden md:flex items-center gap-8">
             <a href="#features" className="text-[#8a9aa8] hover:text-white transition-all hover:scale-105 text-sm">Features</a>
             <a href="#how-it-works" className="text-[#8a9aa8] hover:text-white transition-all hover:scale-105 text-sm">How it Works</a>
-            <a href="https://github.com/legasicrypto/skale-hackathon" target="_blank" className="text-[#8a9aa8] hover:text-white transition-all hover:scale-105 text-sm">Docs</a>
+            <a href="https://github.com/legasicrypto/bnb-goodvibes-openclaw" target="_blank" className="text-[#8a9aa8] hover:text-white transition-all hover:scale-105 text-sm">Docs</a>
           </div>
 
           <div className="flex items-center gap-3">
@@ -23,7 +23,7 @@ export default function Home() {
               Dashboard
             </Link>
             <a
-              href="https://evm.legasi.io"
+              href="https://bnb.legasi.io"
               target="_blank"
               className="h-9 px-4 bg-[#FF4E00] hover:bg-[#E64500] text-white text-sm font-medium rounded-lg transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#FF4E00]/20 flex items-center glow-btn"
             >
@@ -101,16 +101,16 @@ export default function Home() {
             <div className="text-xs text-[#5a6a78]">Flash Fee</div>
           </div>
           <div className="text-center group">
-            <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">SKALE</div>
+            <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">BNB Chain</div>
             <div className="text-xs text-[#5a6a78]">Base Sepolia</div>
           </div>
         </div>
       </section>
 
-      {/* Why SKALE */}
+      {/* Why BNB Chain */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <p className="text-center text-xs text-[#5a6a78] uppercase tracking-widest mb-4">Why SKALE</p>
+          <p className="text-center text-xs text-[#5a6a78] uppercase tracking-widest mb-4">Why BNB Chain</p>
           <h3 className="text-center text-2xl md:text-3xl font-bold mb-8">Instant finality, gas-light UX, EVM compatibility</h3>
           <div className="grid md:grid-cols-3 gap-5">
             <div className="p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl">
@@ -279,14 +279,14 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="https://evm.legasi.io"
+                  href="https://bnb.legasi.io"
                   target="_blank"
                   className="h-14 px-8 bg-[#FF4E00] hover:bg-[#E64500] text-white font-semibold rounded-xl transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#FF4E00]/30 flex items-center justify-center glow-btn"
                 >
                   Live Demo
                 </a>
                 <a
-                  href="https://github.com/legasicrypto/skale-hackathon"
+                  href="https://github.com/legasicrypto/bnb-goodvibes-openclaw"
                   target="_blank"
                   className="h-14 px-8 bg-[#0a2535] hover:bg-[#0d3040] border border-[#1a3545] hover:border-[#FF4E00]/30 font-semibold rounded-xl transition-all hover:scale-105 flex items-center justify-center"
                 >
@@ -308,11 +308,11 @@ export default function Home() {
             <a href="https://x.com/legasi_xyz" target="_blank" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
               Twitter
             </a>
-            <a href="https://github.com/legasicrypto/skale-hackathon" target="_blank" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
+            <a href="https://github.com/legasicrypto/bnb-goodvibes-openclaw" target="_blank" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
               GitHub
             </a>
-            <a href="https://skale.space/" target="_blank" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
-              SKALE
+            <a href="https://BNB Chain.space/" target="_blank" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
+              BNB Chain
             </a>
           </div>
         </div>
