@@ -2,6 +2,7 @@
 
 import { FC, ReactNode } from 'react';
 import { WagmiProvider, createConfig, http } from 'wagmi';
+import { fallback } from 'viem';
 import { injected } from 'wagmi/connectors';
 import { Chain } from 'viem';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -29,7 +30,12 @@ const config = createConfig({
   chains: [bscTestnet],
   connectors: [injected()],
   transports: {
-    [bscTestnet.id]: http(rpcUrl),
+    [bscTestnet.id]: fallback([
+      http(rpcUrl),
+      http('https://bsc-testnet-rpc.publicnode.com'),
+      http('https://data-seed-prebsc-1-s1.binance.org:8545/'),
+      http('https://data-seed-prebsc-2-s1.binance.org:8545/'),
+    ]),
   },
 });
 
