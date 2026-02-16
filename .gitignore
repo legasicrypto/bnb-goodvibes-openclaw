@@ -1,0 +1,13 @@
+node_modules
+.env
+.env.*
+artifacts
+cache
+.vercel
+node_modules
+.env
+.env.*
+app/.env.local
+app/.env.*
+_secrets
+
