@@ -756,11 +756,11 @@ function Dashboard() {
 
                 <div className="p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl backdrop-blur-sm">
                   <h3 className="text-xl font-semibold mb-2">
-                    {lpTab === "deposit" ? "Provide Liquidity" : "Withdraw Liquidity"}
+                    {lpTab === "deposit" ? "Provide Liquidity (as an Agent)" : "Withdraw Liquidity"}
                   </h3>
                   <p className="text-sm text-[#6a7a88] mb-6">
                     {lpTab === "deposit"
-                      ? "Earn yield by providing liquidity — and power agent borrowing."
+                      ? "Agents can also be LPs: provide mUSDC liquidity to earn yield and deepen the borrowing pool."
                       : "Withdraw your provided liquidity"}
                   </p>
 
