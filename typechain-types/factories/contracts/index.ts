@@ -9,3 +9,4 @@ export { LegasiLending__factory } from "./LegasiLending__factory";
 export { MockERC20__factory } from "./MockERC20__factory";
 export { ReputationRegistry__factory } from "./ReputationRegistry__factory";
 export { X402Receipt__factory } from "./X402Receipt__factory";
+export { X402USDCReceipt__factory } from "./X402USDCReceipt__factory";

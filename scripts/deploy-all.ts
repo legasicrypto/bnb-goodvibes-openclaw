@@ -59,10 +59,16 @@ async function main() {
   await flash.waitForDeployment();
   console.log("Flash:", await flash.getAddress());
 
+  // x402 receipts (V1 kept for compatibility, V2 is best-in-class and used by the app)
   const X402 = await ethers.getContractFactory("X402Receipt");
   const x402 = await X402.deploy();
   await x402.waitForDeployment();
-  console.log("X402Receipt:", await x402.getAddress());
+  console.log("X402Receipt (v1):", await x402.getAddress());
+
+  const X402V2 = await ethers.getContractFactory("X402USDCReceipt");
+  const x402v2 = await X402V2.deploy();
+  await x402v2.waitForDeployment();
+  console.log("X402USDCReceipt (v2):", await x402v2.getAddress());
 
   // register collateral + borrowable
   await (await core.registerCollateral(weth, 7500, 8000, 500, 6)).wait(); // WETH

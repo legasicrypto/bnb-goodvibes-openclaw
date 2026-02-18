@@ -10,6 +10,10 @@ export const CONTRACTS = {
   lp: clean(process.env.NEXT_PUBLIC_LP, "0xDd5605472769C91C3592023A445f1B4aB0cAED7a"),
   gad: clean(process.env.NEXT_PUBLIC_GAD, "0x0eD2B07885Bb42D36d910857b02A5c797BcF8724"),
   reputation: clean(process.env.NEXT_PUBLIC_REPUTATION, "0x02c0B1A438eCccD978D11889f19cd20A5584fBFf"),
+  // x402 receipt contracts
+  // v2 is best-in-class and MUST be used for the paywall (it transfers mUSDC + binds receipts to resources).
+  x402v2: clean(process.env.NEXT_PUBLIC_X402_V2, "0x570BF4EdE1029c7Bc610f507c7D7a252F7328F24"),
+  // v1 kept for legacy/docs reference
   x402: clean(process.env.NEXT_PUBLIC_X402, "0x988aA233bc27d60110c6026897d7e41F4C6D3C7c"),
 
   // Mock tokens (testnet demo)

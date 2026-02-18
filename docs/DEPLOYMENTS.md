@@ -1,48 +1,33 @@
-# Deployments — BNB Smart Chain Testnet
+# Deployments — BSC Testnet (BNB Smart Chain Testnet)
 
-**Network:** BNB Smart Chain Testnet  
-**Chain ID:** 1444673419  
-**RPC:** `https://bsc-testnet-rpc.publicnode.com`
+**Network:** BNB Smart Chain Testnet (BSC Testnet)  
+**Chain ID:** 97  
+**Explorer:** https://testnet.bscscan.com  
+**RPC (public):** `https://bsc-testnet-rpc.publicnode.com`
 
 ## Core Protocol
 
-| Contract | Address | Description |
-|----------|---------|-------------|
-| **LegasiCore** | `0x84d9D82d528D0E1c8c9d149577cE22be7526ca91` | Config, prices, LTV settings |
-| **LegasiLending** | `0xB966e02Ca94bD54F6a3aB64eD05045616a712618` | Deposit, borrow, repay, withdraw |
-| **LegasiLP** | `0x3a197F95EEED77CE9A6006FAaE89E5C86f3B90aB` | LP vault for yield |
-| **LegasiGAD** | `0xfC3E84409989C316500378949C6aF45dc1070b2A` | Gradual Auto-Deleveraging |
-| **LegasiFlash** | `0x3BC223A9564dC6fe97168aA4B2330aa079860dc3` | Flash loans (0.09% fee) |
-| **ReputationRegistry** | `0xABad189F8127D24EcB98d6583e51Cc458c996Bf3` | On-chain credit scoring |
-| **X402Receipt** | `0x6810E9B16512959Fe9BAB74a8532e38450D0dA58` | HTTP 402 payment receipts |
+| Contract | Address |
+|----------|---------|
+| LegasiCore | `0x7C3dd137c13653aaa8457A220aa4B586a30AD7F6` |
+| LegasiLending | `0x06bd127D48D9b82885b2692628d3bf12CdFCC5d7` |
+| LegasiLP | `0xDd5605472769C91C3592023A445f1B4aB0cAED7a` |
+| LegasiGAD | `0x0eD2B07885Bb42D36d910857b02A5c797BcF8724` |
+| ReputationRegistry | `0x02c0B1A438eCccD978D11889f19cd20A5584fBFf` |
+| X402Receipt (v1, legacy) | `0x988aA233bc27d60110c6026897d7e41F4C6D3C7c` |
+| X402USDCReceipt (v2, paywall) | `0x570BF4EdE1029c7Bc610f507c7D7a252F7328F24` |
 
-## Mock Tokens (Testnet)
+## Mock Tokens (Testnet Demo)
 
 | Token | Address | Decimals |
 |-------|---------|----------|
-| **USDC** | `0x8692A9d69113E1454C09c631AdE12949E5c11306` | 6 |
-| **WETH** | `0x1eA5C029D6aea21f066D661CA7B6f5404Cd4d409` | 6 |
-| **WBTC** | `0x7787dC83291C37d349D9523D028771914679f4C5` | 8 |
+| mUSDC | `0x31C007fD6597748dacde1e243A8ef1C083bbC8F4` | 6 |
+| mWETH | `0x040Cc7C35B5ea611519e3AB6389632dc690ee701` | 6 |
+| mWBTC | `0xFCD7E225F9aeF687e3d2E3b90f62e7dCDf2Af9C3` | 8 |
 
-## Pool Liquidity
+## Proof (example tx)
 
-- Lending pool: **1,000,000 USDC**
-- Flash pool: **100,000 USDC**
+- Deployer: `0x44031ac1d5fB9FC2Ff441F180979d4Bcf768411D`
+- Faucet (tBNB): https://testnet.bscscan.com/tx/0x23a3ecb2ea82328c37797734b704ff48eff50b368f64130f9cf8edf9f9b5cdb5
 
-## Collateral Config
-
-| Token | Max LTV | Liquidation Threshold | Liquidation Bonus |
-|-------|---------|----------------------|-------------------|
-| WETH | 75% | 80% | 5% |
-| WBTC | 70% | 75% | 5% |
-
-## Price Feeds (Manual)
-
-Prices updated via `LegasiCore.updatePrice()`:
-- WETH: $2,600
-- WBTC: $45,000
-- USDC: $1
-
----
-
-*Last updated: 2026-02-13*
+*Last updated: 2026-02-18*

@@ -44,3 +44,5 @@ export type { ReputationRegistry } from "./contracts/ReputationRegistry";
 export { ReputationRegistry__factory } from "./factories/contracts/ReputationRegistry__factory";
 export type { X402Receipt } from "./contracts/X402Receipt";
 export { X402Receipt__factory } from "./factories/contracts/X402Receipt__factory";
+export type { X402USDCReceipt } from "./contracts/X402USDCReceipt";
+export { X402USDCReceipt__factory } from "./factories/contracts/X402USDCReceipt__factory";

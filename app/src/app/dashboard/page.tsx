@@ -188,7 +188,7 @@ function Dashboard() {
   const weth = CONTRACTS.weth as `0x${string}`;
   const core = CONTRACTS.core as `0x${string}`;
   const reputation = CONTRACTS.reputation as `0x${string}`;
-  const x402 = CONTRACTS.x402 as `0x${string}`;
+  const x402 = (CONTRACTS as any).x402v2 ? ((CONTRACTS as any).x402v2 as `0x${string}`) : (CONTRACTS.x402 as `0x${string}`);
 
   const { data: totalDeposits } = useReadContract({ address: lp, abi: lpAbi, functionName: "totalDeposits" });
   const { data: totalShares } = useReadContract({ address: lp, abi: lpAbi, functionName: "totalShares" });

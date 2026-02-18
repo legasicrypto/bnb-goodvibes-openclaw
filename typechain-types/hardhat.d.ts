@@ -89,6 +89,10 @@ declare module "hardhat/types/runtime" {
       name: "X402Receipt",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.X402Receipt__factory>;
+    getContractFactory(
+      name: "X402USDCReceipt",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.X402USDCReceipt__factory>;
 
     getContractAt(
       name: "Ownable",
@@ -185,6 +189,11 @@ declare module "hardhat/types/runtime" {
       address: string | ethers.Addressable,
       signer?: ethers.Signer
     ): Promise<Contracts.X402Receipt>;
+    getContractAt(
+      name: "X402USDCReceipt",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.X402USDCReceipt>;
 
     deployContract(
       name: "Ownable",
@@ -262,6 +271,10 @@ declare module "hardhat/types/runtime" {
       name: "X402Receipt",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.X402Receipt>;
+    deployContract(
+      name: "X402USDCReceipt",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.X402USDCReceipt>;
 
     deployContract(
       name: "Ownable",
@@ -358,6 +371,11 @@ declare module "hardhat/types/runtime" {
       args: any[],
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.X402Receipt>;
+    deployContract(
+      name: "X402USDCReceipt",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.X402USDCReceipt>;
 
     // default types
     getContractFactory(

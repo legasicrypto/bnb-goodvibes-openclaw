@@ -11,3 +11,4 @@ export type { LegasiLending } from "./LegasiLending";
 export type { MockERC20 } from "./MockERC20";
 export type { ReputationRegistry } from "./ReputationRegistry";
 export type { X402Receipt } from "./X402Receipt";
+export type { X402USDCReceipt } from "./X402USDCReceipt";
