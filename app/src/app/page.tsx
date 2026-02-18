@@ -45,7 +45,7 @@ export default function Home() {
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
-            x402 Hackathon
+Agentic Commerce on BNB Chain
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] mb-6 animate-fade-in-up animate-delay-100">
@@ -93,8 +93,8 @@ export default function Home() {
             <div className="text-xs text-[#5a6a78]">Contracts</div>
           </div>
           <div className="text-center group">
-            <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">0</div>
-            <div className="text-xs text-[#5a6a78]">Gas Fees</div>
+            <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">Low</div>
+            <div className="text-xs text-[#5a6a78]">Fees</div>
           </div>
           <div className="text-center group">
             <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">0.09%</div>
@@ -311,7 +311,7 @@ export default function Home() {
             <a href="https://github.com/legasicrypto/bnb-goodvibes-openclaw" target="_blank" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
               GitHub
             </a>
-            <a href="https://BNB Chain.space/" target="_blank" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
+            <a href="https://www.bnbchain.org/" target="_blank" rel="noreferrer" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
               BNB Chain
             </a>
           </div>
