@@ -68,6 +68,20 @@ export function getPublicClient() {
   });
 }
 
+async function withRetry<T>(fn: () => Promise<T>, label: string, tries = 3) {
+  let lastErr: any;
+  for (let i = 0; i < tries; i++) {
+    try {
+      return await fn();
+    } catch (e) {
+      lastErr = e;
+      // small backoff (testnet RPC flakiness)
+      await new Promise((r) => setTimeout(r, 250 * (i + 1)));
+    }
+  }
+  throw new Error(`x402 rpc failed (${label}): ${lastErr?.message || lastErr}`);
+}
+
 export function makeResourceHash(resource: string) {
   return keccak256(encodePacked(["string"], [resource]));
 }
@@ -133,22 +147,28 @@ export async function verifyPaid({
   const publicClient = getPublicClient();
 
   if (requireX402Enabled) {
-    const cfg = await publicClient.readContract({
-      address: X402.lending,
-      abi: lendingReadAbi,
-      functionName: "agentConfigs",
-      args: [payer],
-    });
+    const cfg = await withRetry(
+      () => publicClient.readContract({
+        address: X402.lending,
+        abi: lendingReadAbi,
+        functionName: "agentConfigs",
+        args: [payer],
+      }),
+      "agentConfigs"
+    );
     const x402Enabled = Boolean(cfg[4]);
     if (!x402Enabled) return { ok: false as const, error: "x402_disabled" };
   }
 
-  const receipt = await publicClient.readContract({
-    address: X402.contract,
-    abi: x402V2Abi,
-    functionName: "receipts",
-    args: [paymentId],
-  });
+  const receipt = await withRetry(
+    () => publicClient.readContract({
+      address: X402.contract,
+      abi: x402V2Abi,
+      functionName: "receipts",
+      args: [paymentId],
+    }),
+    "receipts"
+  );
 
   const [rid, rResourceHash, rPayer, rRecipient, rToken, rAmount, rPaidAt, rExpiresAt] = receipt;
 

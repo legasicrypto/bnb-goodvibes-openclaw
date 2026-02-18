@@ -390,7 +390,19 @@ function PremiumInner() {
 
         {result && (
           <div className="mt-8 p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl">
-            <div className="text-lg font-semibold">Premium Response</div>
+            <div className="flex items-start justify-between gap-4">
+              <div className="text-lg font-semibold">Premium Response</div>
+              {challenge?.contract && (
+                <a
+                  className="text-sm text-[#FF4E00] hover:underline"
+                  href={`https://testnet.bscscan.com/address/${challenge.contract}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View receipt contract on BscScan →
+                </a>
+              )}
+            </div>
             <pre className="mt-3 text-xs bg-[#001520] border border-[#0a2535] rounded-xl p-4 overflow-auto">
               {JSON.stringify(result, null, 2)}
             </pre>

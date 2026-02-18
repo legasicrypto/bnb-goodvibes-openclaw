@@ -44,7 +44,7 @@ BNB chain choice: low fees + fast finality → viable for high-frequency agent a
 
 ---
 
-## 2) Live demo flow (5–7 minutes)
+## 2) Live demo flow (7–10 minutes)
 
 ### A) Faucet (60s)
 1. Go to: https://bnb.legasi.io/faucet
@@ -71,8 +71,18 @@ If mint fails:
 2. Deposit mUSDC
 3. Withdraw shares
 
-### D) x402 & GAD (60s)
-- Explain x402 receipts + show contract address in docs
+### D) x402 premium paywall (2–3 min)
+1. Go to **Dashboard** → Premium cards
+2. Click **Borrow & Unlock** (shows the working-capital story)
+3. In Premium Hub:
+   - sign message
+   - approve mUSDC
+   - pay() → on-chain receipt
+4. Show **BscScan links** + **Access granted**
+
+**Narration:** agents borrow USDC as working capital, then buy API access via HTTP 402 + on-chain receipts.
+
+### E) GAD (30–60s)
 - Explain GAD: gradual deleveraging vs hard liquidation
 
 ---
