@@ -760,7 +760,7 @@ function Dashboard() {
                   </h3>
                   <p className="text-sm text-[#6a7a88] mb-6">
                     {lpTab === "deposit"
-                      ? "Earn yield by providing liquidity to the protocol"
+                      ? "Earn yield by providing liquidity — and power agent borrowing."
                       : "Withdraw your provided liquidity"}
                   </p>
 
