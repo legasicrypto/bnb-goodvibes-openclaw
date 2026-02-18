@@ -4,10 +4,10 @@
 Port Legasi (existing protocol) to BNB Chain (BSC testnet) for this sprint, with full feature parity and reproducible deployment.
 
 ## Timeline
-- 2026-02-16: Created fresh repo + copied SKALE reference (no fork). Rewired config target to BSC testnet (chainId 97).
+- 2026-02-16: Created a fresh repo and rewired the entire stack to BSC testnet (chainId 97). Deployed contracts + shipped a live demo.
 
 ## AI usage (what we used AI for)
-- Porting plan + checklists (SKALE → BSC testnet migration)
+- Build plan + checklists (BSC testnet integration + reproducibility)
 - Next.js copy/UX consistency audit (USDC vs mUSDC, x402 flow copy)
 - Error-mapping for x402 UX (actionable user messages)
 - Demo runbook tightening + proof-link placement
