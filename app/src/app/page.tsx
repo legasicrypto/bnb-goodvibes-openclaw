@@ -55,7 +55,10 @@ Agentic Commerce on BNB Chain
           </h1>
 
           <p className="text-lg md:text-xl text-[#8a9aa8] max-w-2xl mx-auto mb-4 leading-relaxed animate-fade-in-up animate-delay-200">
-            Agents borrow USDC, pay for services via x402, and build on-chain reputation.
+            Agents borrow USDC, buy API access via HTTP 402 (x402), and build on-chain reputation.
+          </p>
+          <p className="text-xs text-[#6a7a88] max-w-2xl mx-auto mb-6 animate-fade-in-up animate-delay-200">
+            Demo note: on BSC testnet we use mintable mock tokens (mUSDC/mWETH/mWBTC) to showcase the exact same flow.
           </p>
           <p className="text-sm text-[#6a7a88] max-w-2xl mx-auto mb-10 animate-fade-in-up animate-delay-200">
             The financial infrastructure for agentic commerce. Collateral → Credit → Payments → Reputation.
@@ -111,19 +114,19 @@ Agentic Commerce on BNB Chain
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <p className="text-center text-xs text-[#5a6a78] uppercase tracking-widest mb-4">Why BNB Chain</p>
-          <h3 className="text-center text-2xl md:text-3xl font-bold mb-8">Instant finality, gas-light UX, EVM compatibility</h3>
+          <h3 className="text-center text-2xl md:text-3xl font-bold mb-8">Low fees, fast finality, and real EVM infra for agent flows</h3>
           <div className="grid md:grid-cols-3 gap-5">
             <div className="p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl">
-              <div className="text-sm font-semibold mb-2">Gas-light UX</div>
-              <p className="text-sm text-[#6a7a88]">Users focus on actions, not gas. Perfect for autonomous agents.</p>
+              <div className="text-sm font-semibold mb-2">Low fees (high frequency)</div>
+              <p className="text-sm text-[#6a7a88]">Agents can do repeated borrow/pay/retry loops without fee anxiety.</p>
             </div>
             <div className="p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl">
-              <div className="text-sm font-semibold mb-2">Fast finality</div>
-              <p className="text-sm text-[#6a7a88]">Low latency for credit decisions and automated strategies.</p>
+              <div className="text-sm font-semibold mb-2">Fast finality (smooth UX)</div>
+              <p className="text-sm text-[#6a7a88]">Makes HTTP 402 payment handshakes feel instant in practice.</p>
             </div>
             <div className="p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl">
-              <div className="text-sm font-semibold mb-2">EVM compatible</div>
-              <p className="text-sm text-[#6a7a88]">Seamless integration with existing tooling and wallets.</p>
+              <div className="text-sm font-semibold mb-2">EVM tooling + ecosystem</div>
+              <p className="text-sm text-[#6a7a88]">Wallets, infra, and integrations that agents already use.</p>
             </div>
           </div>
         </div>
