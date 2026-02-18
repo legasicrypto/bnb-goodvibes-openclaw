@@ -21,14 +21,14 @@ Legasi implements **x402 (HTTP 402 Payment Required)** for the agentic economy:
 ### The x402 Flow
 
 ```
-Agent → Service (HTTP 402) → Agent pays via x402Receipt → Service delivers
+Agent → Service (HTTP 402) → Agent pays via X402USDCReceipt.pay() → Service verifies receipt → Content delivered
 ```
 
 ### Why BNB Chain?
 
-- **Zero gas** — Perfect for high-frequency x402 payments
-- **Fast finality** — Sub-second confirmations
-- **EVM compatible** — Standard tooling (wagmi, viem, ethers)
+- **Low fees** — viable for high-frequency agent actions (borrow/pay/retry loops)
+- **Fast finality** — smooth UX for HTTP 402 payment handshakes
+- **EVM compatible** — standard tooling (wagmi, viem, ethers)
 
 ---
 
@@ -69,44 +69,42 @@ See `docs/DEPLOYMENTS.md` for full details.
 
 ## Quick Start
 
-### 1. Run the Demo (60 seconds)
+### 1) Run the Demo (2–3 minutes)
 
 1. Open https://bnb.legasi.io
-2. Connect MetaMask on **BNB Smart Chain Testnet**
-3. Get test tokens via **Faucet**
-4. Supply collateral → Borrow → Repay → Withdraw
+2. Connect MetaMask on **BNB Smart Chain Testnet** (chainId **97**)
+3. Mint tokens via **Faucet**
+4. Follow the guided runbook: https://bnb.legasi.io/demo
 
-### 2. Local Development
+### 2) Reproduce locally (contracts)
 
 ```bash
-# Clone
 git clone https://github.com/legasicrypto/bnb-goodvibes-openclaw
-cd BNB Chain-hackathon
+cd bnb-goodvibes-openclaw
 
-# Install
 npm install
-cd app && npm install && cd ..
 
-# Configure
+# Optional (if you want to redeploy):
 cp .env.example .env
-# Add BSC_TESTNET_RPC + DEPLOYER_PK
+# Set DEPLOYER_PK + BSC_TESTNET_RPC
 
-# Compile
 npx hardhat compile
-
-# Test
 npx hardhat test
 
-# Deploy
-npx hardhat run scripts/deploy-all.ts --network BNB Chain
+# Optional deploy (BSC testnet)
+npm run deploy
+
+# Verify deployed wiring on BSC testnet
+npm run smoke:bsc
 ```
 
-### 3. Frontend
+### 3) Frontend (local)
 
 ```bash
 cd app
+npm install
 npm run dev
-# Open http://localhost:3000
+# http://localhost:3000
 ```
 
 ---
