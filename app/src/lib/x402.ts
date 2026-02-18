@@ -11,7 +11,24 @@ export const X402 = {
   contract: clean(process.env.NEXT_PUBLIC_X402_V2, "0x570BF4EdE1029c7Bc610f507c7D7a252F7328F24") as `0x${string}`,
   recipient: clean(process.env.NEXT_PUBLIC_X402_RECIPIENT, "0x44031ac1d5fB9FC2Ff441F180979d4Bcf768411D") as `0x${string}`,
   ttlSeconds: Number(clean(process.env.X402_TTL_SECONDS, "600")),
+  lending: clean(process.env.NEXT_PUBLIC_LENDING, "0x06bd127D48D9b82885b2692628d3bf12CdFCC5d7") as `0x${string}`,
 };
+
+export const lendingReadAbi = [
+  {
+    name: "agentConfigs",
+    type: "function",
+    stateMutability: "view",
+    inputs: [{ name: "", type: "address" }],
+    outputs: [
+      { name: "dailyBorrowLimitUsd6", type: "uint256" },
+      { name: "dailyBorrowedUsd6", type: "uint256" },
+      { name: "periodStart", type: "uint256" },
+      { name: "autoRepayEnabled", type: "bool" },
+      { name: "x402Enabled", type: "bool" },
+    ],
+  },
+] as const;
 
 export const x402V2Abi = [
   {
@@ -96,12 +113,14 @@ export async function verifyPaid({
   paymentId,
   signature,
   amountUsd6,
+  requireX402Enabled,
 }: {
   resource: string;
   payer: `0x${string}`;
   paymentId: `0x${string}`;
   signature: `0x${string}`;
   amountUsd6: bigint;
+  requireX402Enabled?: boolean;
 }) {
   const resourceHash = makeResourceHash(resource);
 
@@ -112,6 +131,18 @@ export async function verifyPaid({
   }
 
   const publicClient = getPublicClient();
+
+  if (requireX402Enabled) {
+    const cfg = await publicClient.readContract({
+      address: X402.lending,
+      abi: lendingReadAbi,
+      functionName: "agentConfigs",
+      args: [payer],
+    });
+    const x402Enabled = Boolean(cfg[4]);
+    if (!x402Enabled) return { ok: false as const, error: "x402_disabled" };
+  }
+
   const receipt = await publicClient.readContract({
     address: X402.contract,
     abi: x402V2Abi,

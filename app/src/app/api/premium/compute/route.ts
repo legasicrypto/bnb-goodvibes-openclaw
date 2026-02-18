@@ -101,6 +101,36 @@ export async function GET(req: Request) {
     );
   }
 
+  // Enforce on-chain agent policy: x402 must be enabled for this payer.
+  try {
+    const cfg = await publicClient.readContract({
+      address: process.env.NEXT_PUBLIC_LENDING as `0x${string}`,
+      abi: [
+        {
+          name: "agentConfigs",
+          type: "function",
+          stateMutability: "view",
+          inputs: [{ name: "", type: "address" }],
+          outputs: [
+            { name: "dailyBorrowLimitUsd6", type: "uint256" },
+            { name: "dailyBorrowedUsd6", type: "uint256" },
+            { name: "periodStart", type: "uint256" },
+            { name: "autoRepayEnabled", type: "bool" },
+            { name: "x402Enabled", type: "bool" },
+          ],
+        },
+      ] as const,
+      functionName: "agentConfigs",
+      args: [payer],
+    });
+    const x402Enabled = Boolean(cfg[4]);
+    if (!x402Enabled) return NextResponse.json({ error: "x402_disabled" }, { status: 403 });
+  } catch (e) {
+    // If the read fails, fail closed: do not allow spending via x402.
+    console.error("x402 policy read failed", e);
+    return NextResponse.json({ error: "x402_policy_unavailable" }, { status: 503 });
+  }
+
   // Verify signature binds payer to paymentId.
   const expectedMessage = `Legasi x402 payment for ${resource} (paymentId: ${paymentId})`;
   let recovered: `0x${string}`;

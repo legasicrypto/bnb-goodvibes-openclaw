@@ -18,7 +18,7 @@ export async function GET(req: Request) {
   }
 
   try {
-    const v = await verifyPaid({ resource, payer, paymentId, signature: sig, amountUsd6: AMOUNT_USDC_6 });
+    const v = await verifyPaid({ resource, payer, paymentId, signature: sig, amountUsd6: AMOUNT_USDC_6, requireX402Enabled: true });
     if (!v.ok) return NextResponse.json({ error: v.error }, { status: v.error === "signature_mismatch" ? 401 : 402 });
 
     // Premium quote payload (judge-friendly)
