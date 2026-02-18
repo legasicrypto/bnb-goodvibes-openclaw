@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import InlinePremiumModal from "./InlinePremiumModal";
 
 type Proof = { paymentId: string; signature: string; payer: string; ts: number };
 
@@ -43,6 +44,8 @@ function readProof(key: string): Proof | null {
 
 export default function PremiumSection() {
   const [proofs, setProofs] = useState<Record<string, Proof | null>>({});
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalEndpoint, setModalEndpoint] = useState<"compute" | "quote" | "agent-config" | "dataset">("compute");
 
   useEffect(() => {
     const p: Record<string, Proof | null> = {};
@@ -59,7 +62,9 @@ export default function PremiumSection() {
   }, []);
 
   return (
-    <div className="lg:col-span-3 p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl backdrop-blur-sm card-shine">
+    <>
+      <InlinePremiumModal open={modalOpen} endpoint={modalEndpoint} onClose={() => setModalOpen(false)} />
+      <div className="lg:col-span-3 p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl backdrop-blur-sm card-shine">
       <div className="flex items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
@@ -71,7 +76,7 @@ export default function PremiumSection() {
         <Link className="text-sm text-[#FF4E00] hover:underline" href="/premium">Open Premium Hub →</Link>
       </div>
 
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-3">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
         {endpoints.map((x) => {
           const unlocked = !!proofs[x.key];
           return (
@@ -82,11 +87,20 @@ export default function PremiumSection() {
               </div>
               <div className="text-xs text-[#6a7a88] mt-1">{x.desc}</div>
               <div className="mt-3 flex flex-wrap items-center gap-2">
-                <Link className="text-sm font-semibold text-white bg-[#FF4E00] hover:bg-[#E64500] px-3 py-2 rounded-lg" href={x.href}>
-                  {unlocked ? "View" : "Unlock via x402"}
+                <button
+                  className="text-sm font-semibold text-white bg-[#FF4E00] hover:bg-[#E64500] px-3 py-2 rounded-lg"
+                  onClick={() => {
+                    setModalEndpoint(x.key);
+                    setModalOpen(true);
+                  }}
+                >
+                  One-click
+                </button>
+                <Link className="text-sm font-semibold text-white bg-[#0a2535] hover:bg-[#123247] px-3 py-2 rounded-lg" href={x.href}>
+                  {unlocked ? "View" : "Unlock"}
                 </Link>
                 {!unlocked && (
-                  <Link className="text-sm font-semibold text-white bg-[#0a2535] hover:bg-[#123247] px-3 py-2 rounded-lg" href={x.hrefBorrow}>
+                  <Link className="text-sm font-semibold text-white bg-[#0a2535]/70 hover:bg-[#123247] px-3 py-2 rounded-lg" href={x.hrefBorrow}>
                     Borrow & Unlock
                   </Link>
                 )}
@@ -97,5 +111,6 @@ export default function PremiumSection() {
         })}
       </div>
     </div>
+    </>
   );
 }
