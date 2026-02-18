@@ -29,5 +29,7 @@
 
 - Deployer: `0x44031ac1d5fB9FC2Ff441F180979d4Bcf768411D`
 - Faucet (tBNB): https://testnet.bscscan.com/tx/0x23a3ecb2ea82328c37797734b704ff48eff50b368f64130f9cf8edf9f9b5cdb5
+- Borrow mUSDC: https://testnet.bscscan.com/tx/0xe26324b66cdb63f9448d973a1589e6f87e87f811e544cff2f48171de62d6bc7e
+- Repay mUSDC: https://testnet.bscscan.com/tx/0x7b2ef68207ff4706fd3cdb4979ffa414078bc42b166a328de195afd783a317e1
 
 *Last updated: 2026-02-18*
