@@ -25,6 +25,7 @@ function IconLock({ className = "h-5 w-5" }: { className?: string }) {
 }
 
 const endpoints = [
+  { key: "compute", title: "Premium Compute", desc: "Risk score + recommended limits", href: "/premium?endpoint=compute", hrefBorrow: "/premium?endpoint=compute&mode=borrowpay" },
   { key: "quote", title: "Pro Terms", desc: "Tiered pricing, APR & limits", href: "/premium?endpoint=quote", hrefBorrow: "/premium?endpoint=quote&mode=borrowpay" },
   { key: "agent-config", title: "Pro Agent Limits", desc: "Policy JSON + controls", href: "/premium?endpoint=agent-config", hrefBorrow: "/premium?endpoint=agent-config&mode=borrowpay" },
   { key: "dataset", title: "Export Dataset", desc: "Premium feed (JSON)", href: "/premium?endpoint=dataset", hrefBorrow: "/premium?endpoint=dataset&mode=borrowpay" },
@@ -70,7 +71,7 @@ export default function PremiumSection() {
         <Link className="text-sm text-[#FF4E00] hover:underline" href="/premium">Open Premium Hub →</Link>
       </div>
 
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-3">
         {endpoints.map((x) => {
           const unlocked = !!proofs[x.key];
           return (
