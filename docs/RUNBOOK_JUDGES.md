@@ -6,6 +6,13 @@ This is the **single source of truth** for the live demo.
 - Network: **BNB Smart Chain Testnet** (chainId **97**)
 - Explorer: https://testnet.bscscan.com
 
+## 0) Demo page (recommended)
+
+Open the guided demo page:
+- `/demo` (on prod: https://bnb.legasi.io/demo)
+
+---
+
 ## 0) Pre-flight checklist (DO THIS BEFORE YOU SCREENSHARE)
 
 ### Wallet / network
