@@ -363,7 +363,7 @@ function PremiumInner() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <div className="text-lg font-semibold">Payment Required (402)</div>
-                <div className="mt-1 text-sm text-[#8a9aa8]">Pay with mUSDC to unlock this premium compute response.</div>
+                <div className="mt-1 text-sm text-[#8a9aa8]">Unlock this premium response with an on-chain mUSDC receipt (x402).</div>
               </div>
               <div className="text-right">
                 <div className="text-sm text-[#8a9aa8]">Price</div>
@@ -396,7 +396,7 @@ function PremiumInner() {
                 disabled={!isConnected}
                 onClick={payAndUnlock}
               >
-                Pay with mUSDC → Unlock
+                Pay mUSDC → Unlock
               </button>
             </div>
 

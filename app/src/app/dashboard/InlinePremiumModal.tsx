@@ -276,7 +276,7 @@ export default function InlinePremiumModal({
       <div className="absolute left-1/2 top-1/2 w-[min(820px,calc(100%-24px))] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-[#0a2535] bg-[#001520] shadow-2xl">
         <div className="p-5 border-b border-[#0a2535] flex items-center justify-between">
           <div>
-            <div className="text-sm text-[#6a7a88]">One-click Premium</div>
+            <div className="text-sm text-[#6a7a88]">One-click Unlock (x402)</div>
             <div className="text-lg font-semibold">{endpointToPath[endpoint]}</div>
           </div>
           <button className="text-[#8a9aa8] hover:text-white" onClick={onClose} aria-label="Close">✕</button>
@@ -293,7 +293,7 @@ export default function InlinePremiumModal({
               Refresh challenge
             </button>
             <button className="h-11 px-4 rounded-xl bg-[#FF4E00] hover:bg-[#E64500] text-white font-bold" onClick={autoUnlock}>
-              Auto: Borrow → Pay → Unlock
+              One-click: Borrow → Pay → Unlock
             </button>
           </div>
 

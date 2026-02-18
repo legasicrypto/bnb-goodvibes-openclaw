@@ -69,9 +69,9 @@ export default function PremiumSection() {
         <div>
           <div className="flex items-center gap-2">
             <span className="text-[#FF4E00]"><IconSpark /></span>
-            <h3 className="text-xl font-semibold">Premium (x402 Paywall)</h3>
+            <h3 className="text-xl font-semibold">Premium APIs (x402)</h3>
           </div>
-          <p className="text-sm text-[#6a7a88] mt-1">Unlock premium features with mUSDC via HTTP 402 + on-chain receipts.</p>
+          <p className="text-sm text-[#6a7a88] mt-1">Pay with mUSDC via HTTP 402 + on-chain receipts. One-click can borrow if needed.</p>
         </div>
         <Link className="text-sm text-[#FF4E00] hover:underline" href="/premium">Open Premium Hub →</Link>
       </div>
@@ -94,14 +94,14 @@ export default function PremiumSection() {
                     setModalOpen(true);
                   }}
                 >
-                  One-click
+                  One-click Unlock
                 </button>
                 <Link className="text-sm font-semibold text-white bg-[#0a2535] hover:bg-[#123247] px-3 py-2 rounded-lg" href={x.href}>
                   {unlocked ? "View" : "Unlock"}
                 </Link>
                 {!unlocked && (
                   <Link className="text-sm font-semibold text-white bg-[#0a2535]/70 hover:bg-[#123247] px-3 py-2 rounded-lg" href={x.hrefBorrow}>
-                    Borrow & Unlock
+                    Borrow & Unlock (one-click)
                   </Link>
                 )}
                 {unlocked && <span className="text-xs text-[#8a9aa8]">Unlocked</span>}
