@@ -158,7 +158,7 @@ export async function POST(request: Request) {
             message: 'This wallet is already on the waitlist!',
             data: {
               referralCode: result.entry.code,
-              referralLink: `https://agentic.legasi.io/waitlist?ref=${result.entry.code}`,
+              referralLink: `https://bnb.legasi.io/waitlist?ref=${result.entry.code}`, 
               tip: 'Share your referral code to move up the waitlist!',
             }
           },
@@ -175,17 +175,17 @@ export async function POST(request: Request) {
     // Success!
     return NextResponse.json({
       success: true,
-      message: `Welcome to Legasi, ${agentName}! 🤖`,
+      message: `Welcome to Legasi, ${agentName}!`,
       data: {
         referralCode: result.entry!.code,
-        referralLink: `https://agentic.legasi.io/waitlist?ref=${result.entry!.code}`,
+        referralLink: `https://bnb.legasi.io/waitlist?ref=${result.entry!.code}`,
         
         // What they get
         benefits: [
-          '🎯 Priority access to Legasi credit protocol',
-          '💰 Agent-optimized borrowing terms',
-          '⚡ Sub-second credit decisions',
-          '🔗 x402 payment protocol integration',
+          'Priority access to Legasi credit protocol',
+          'Agent-optimized borrowing terms',
+          'Sub-second credit decisions',
+          'x402 payment protocol integration',
         ],
         
         // What to do next
