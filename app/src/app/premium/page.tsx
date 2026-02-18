@@ -65,11 +65,20 @@ export default function PremiumPage() {
 
   const payer = address as `0x${string}` | undefined;
 
+  const routes = useMemo(() => ([
+    { key: "compute", name: "Compute", path: "/api/premium/compute" },
+    { key: "quote", name: "Quote", path: "/api/premium/quote" },
+    { key: "agent-config", name: "Agent Config", path: "/api/premium/agent-config" },
+    { key: "dataset", name: "Dataset", path: "/api/premium/dataset" },
+  ]), []);
+
+  const [selected, setSelected] = useState(routes[0]!.path);
+
   const fetchPremium = useCallback(async (headers?: Record<string, string>) => {
     setError(null);
-    setStatus("Requesting premium compute...");
+    setStatus("Requesting premium endpoint...");
 
-    const res = await fetch("/api/premium/compute", {
+    const res = await fetch(selected, {
       method: "GET",
       headers: {
         ...(payer ? { "x-legasi-payer": payer } : {}),
@@ -98,9 +107,9 @@ export default function PremiumPage() {
   }, [payer]);
 
   useEffect(() => {
-    // attempt to load challenge on page view
+    // attempt to load challenge on page view / endpoint change
     fetchPremium();
-  }, [fetchPremium]);
+  }, [fetchPremium, selected]);
 
   const payAndUnlock = useCallback(async () => {
     if (!payer) {
@@ -156,8 +165,8 @@ export default function PremiumPage() {
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Premium API (x402)</h1>
-            <p className="mt-2 text-[#8a9aa8]">This endpoint is protected by HTTP 402 + on-chain mUSDC receipts (BNB testnet).</p>
+            <h1 className="text-3xl font-bold">Premium APIs (x402)</h1>
+            <p className="mt-2 text-[#8a9aa8]">Paywall multiple premium endpoints using HTTP 402 + on-chain mUSDC receipts (BNB testnet).</p>
           </div>
           <Link className="text-sm text-[#FF4E00] hover:underline" href="/dashboard">← Back to Dashboard</Link>
         </div>
@@ -181,8 +190,33 @@ export default function PremiumPage() {
         {status && <div className="mt-6 p-4 bg-[#051525]/80 border border-[#0a2535] rounded-2xl text-sm text-[#8a9aa8]">{status}</div>}
         {error && <div className="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-2xl text-sm text-red-300">{error}</div>}
 
+        <div className="mt-8 p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <div className="text-sm text-[#8a9aa8]">Select premium endpoint</div>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {routes.map((r) => (
+                  <button
+                    key={r.key}
+                    className={`h-10 px-4 rounded-xl border text-sm font-semibold ${selected === r.path ? "bg-[#FF4E00] border-[#FF4E00] text-white" : "bg-[#001520] border-[#0a2535] text-[#8a9aa8] hover:text-white"}`}
+                    onClick={() => setSelected(r.path)}
+                  >
+                    {r.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <button
+              className="h-10 px-4 bg-[#001520] border border-[#0a2535] hover:border-[#FF4E00]/50 text-white rounded-xl font-semibold"
+              onClick={() => fetchPremium()}
+            >
+              Refresh
+            </button>
+          </div>
+        </div>
+
         {challenge && (
-          <div className="mt-8 p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl">
+          <div className="mt-6 p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <div className="text-lg font-semibold">Payment Required (402)</div>
@@ -220,12 +254,6 @@ export default function PremiumPage() {
                 onClick={payAndUnlock}
               >
                 Pay with mUSDC → Unlock
-              </button>
-              <button
-                className="h-12 px-5 bg-[#001520] border border-[#0a2535] hover:border-[#FF4E00]/50 text-white rounded-xl font-semibold"
-                onClick={() => fetchPremium()}
-              >
-                Refresh
               </button>
             </div>
 
