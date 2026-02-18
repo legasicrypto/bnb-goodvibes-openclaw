@@ -83,10 +83,10 @@ export default function FaucetPage() {
           </div>
 
           <div className="p-4 bg-[#051525]/80 border border-[#0a2535] rounded-2xl">
-            <div className="text-sm text-[#8a9aa8] mb-2">USDC (mUSDC)</div>
+            <div className="text-sm text-[#8a9aa8] mb-2">mUSDC (mock USDC)</div>
             <div className="flex gap-3">
               <input className="flex-1 h-12 bg-[#001520] border border-[#0a2535] rounded-xl px-4 text-white" value={usdcAmount} onChange={(e) => setUsdcAmount(e.target.value)} />
-              <button className="h-12 px-5 bg-[#4ade80] hover:bg-[#22c55e] text-black rounded-xl font-semibold" disabled={!isConnected} onClick={() => mint(usdc, usdcAmount, 6, "USDC")}>Mint USDC</button>
+              <button className="h-12 px-5 bg-[#4ade80] hover:bg-[#22c55e] text-black rounded-xl font-semibold" disabled={!isConnected} onClick={() => mint(usdc, usdcAmount, 6, "mUSDC")}>Mint mUSDC</button>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ export default function FaucetPage() {
               try {
                 await mint(weth, wethAmount, 6, "WETH");
                 await mint(wbtc, wbtcAmount, 8, "WBTC");
-                await mint(usdc, usdcAmount, 6, "USDC");
+                await mint(usdc, usdcAmount, 6, "mUSDC");
                 setStatus("All tokens minted ✓");
               } catch {
                 setStatus("Some mints failed");

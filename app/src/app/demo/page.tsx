@@ -112,7 +112,7 @@ export default function DemoPage() {
             body={
               <>
                 <p className="text-[#8a9aa8]">
-                  <b>Agents borrow USDC as working capital, then buy API access via HTTP 402 + on-chain receipts, and build reputation to unlock better credit terms.</b>
+                  <b>Agents borrow USDC as working capital (mUSDC on testnet), then buy API access via HTTP 402 + on-chain receipts, and build reputation to unlock better credit terms.</b>
                 </p>
               </>
             }

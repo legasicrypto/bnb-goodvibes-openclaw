@@ -566,7 +566,7 @@ function Dashboard() {
                       <div className="flex gap-3 mb-4">
                         <div className="flex-1 relative">
                           <input type="number" placeholder="0.00" value={borrowAmount} onChange={(e) => setBorrowAmount(e.target.value)} className="w-full h-14 bg-[#001520] border border-[#0a2535] rounded-xl px-4 pr-20 text-white placeholder-[#3a4a58] focus:outline-none focus:border-[#FF4E00] transition-all" />
-                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6a7a88] text-sm font-medium">USDC</span>
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6a7a88] text-sm font-medium">mUSDC</span>
                         </div>
                         <button onClick={() => setBorrowAmount(maxBorrow.toFixed(2))} className="h-14 px-4 bg-[#0a2535] hover:bg-[#1a3545] text-[#FF4E00] font-medium rounded-xl transition-all">MAX</button>
                         <button onClick={() => safeTx(async () => {
@@ -588,7 +588,7 @@ function Dashboard() {
                             return writeContractAsync({ address: usdc, abi: erc20Abi, functionName: "mint", args: [lending, BigInt(100000 * 1e6)] });
                           }, "Seed Pool")}
                           className="mt-3 w-full h-10 bg-[#0a2535] hover:bg-[#1a3545] text-[#FF4E00] text-sm font-medium rounded-xl transition-all border border-[#FF4E00]/30">
-                          Seed Pool with 100k USDC (demo)
+                          Seed Pool with 100k mUSDC (demo)
                         </button>
                       )}
                     </div>
@@ -602,7 +602,7 @@ function Dashboard() {
                       <div className="flex gap-3 mb-4">
                         <div className="flex-1 relative">
                           <input type="number" placeholder="0.00" value={repayAmount} onChange={(e) => setRepayAmount(e.target.value)} className="w-full h-14 bg-[#001520] border border-[#0a2535] rounded-xl px-4 pr-20 text-white placeholder-[#3a4a58] focus:outline-none focus:border-[#4ade80] transition-all" />
-                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6a7a88] text-sm font-medium">USDC</span>
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6a7a88] text-sm font-medium">mUSDC</span>
                         </div>
                         <div className="h-14 px-4 flex items-center text-xs text-[#6a7a88]">Auto‑approve included</div>
                         <button onClick={() => safeTx(async () => {
@@ -695,7 +695,7 @@ function Dashboard() {
                   </div>
                   <div>
                     <div className="text-xs text-[#6a7a88] mb-2">Borrowed</div>
-                    <div className="text-sm text-white">{borrowedAmountUSDC.toFixed(2)} USDC</div>
+                    <div className="text-sm text-white">{borrowedAmountUSDC.toFixed(2)} mUSDC</div>
                   </div>
                 </div>
 
@@ -731,7 +731,7 @@ function Dashboard() {
             {/* LP Overview */}
             <div className="grid grid-cols-2 gap-4 mb-8">
               <MetricCard label="Your LP Value" value={`$${lpTotalValue.toFixed(2)}`} />
-              <MetricCard label="USDC APY" value={`${supplyApy.toFixed(1)}%`} color="#4ade80" />
+              <MetricCard label="mUSDC APY" value={`${supplyApy.toFixed(1)}%`} color="#4ade80" />
             </div>
 
             <div className="grid lg:grid-cols-3 gap-6">
@@ -855,7 +855,7 @@ function Dashboard() {
                 <div className="p-5 bg-[#051525]/80 border border-[#0a2535] rounded-2xl backdrop-blur-sm">
                   <h3 className="text-sm font-medium text-[#8a9aa8] mb-4">Pool Statistics</h3>
                   <div className="space-y-3">
-                    <InfoRow label="Total USDC Pool" value="$1.2M" />
+                    <InfoRow label="Total mUSDC Pool" value="$1.2M" />
                     <InfoRow label="Utilization Rate" value={`${protocolStats.utilization}%`} />
                   </div>
                 </div>

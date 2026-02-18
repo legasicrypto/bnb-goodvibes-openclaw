@@ -181,7 +181,7 @@ export default function InlinePremiumModal({
         if (publicClient) await publicClient.waitForTransactionReceipt({ hash: ih });
       } catch {}
 
-      // 3) Borrow missing USDC
+      // 3) Borrow missing mUSDC
       await refetchUsdc();
       const have = usdcBalRaw ?? BigInt(0);
       const need = BigInt(challenge.amount);
