@@ -153,7 +153,7 @@ Agentic Commerce on BNB Chain
                     </svg>
                   </div>
                   <div className="text-sm font-medium mb-1">Agent Requests</div>
-                  <div className="text-xs text-[#6a7a88]">GET /api/data → HTTP 402</div>
+                  <div className="text-xs text-[#6a7a88]">GET /api/premium/compute → HTTP 402</div>
                 </div>
                 <div className="p-4 bg-[#001520]/60 rounded-xl">
                   <div className="w-10 h-10 rounded-lg bg-[#FF4E00]/10 flex items-center justify-center mb-3">
@@ -162,7 +162,7 @@ Agentic Commerce on BNB Chain
                     </svg>
                   </div>
                   <div className="text-sm font-medium mb-1">Pays via Credit</div>
-                  <div className="text-xs text-[#6a7a88]">Uses borrowed USDC</div>
+                  <div className="text-xs text-[#6a7a88]">Uses borrowed USDC (mUSDC on testnet)</div>
                 </div>
                 <div className="p-4 bg-[#001520]/60 rounded-xl">
                   <div className="w-10 h-10 rounded-lg bg-[#4ade80]/10 flex items-center justify-center mb-3">
@@ -176,8 +176,8 @@ Agentic Commerce on BNB Chain
               </div>
               <div className="font-mono text-sm bg-[#000a10] p-4 rounded-xl border border-[#0a2535]">
                 <div className="text-[#6a7a88]">// Agent pays for premium API</div>
-                <div><span className="text-[#FF4E00]">x402Receipt</span>.record(paymentId, payer, recipient, amount);</div>
-                <div className="text-[#4ade80]">// → Event: X402Paid ✓</div>
+                <div><span className="text-[#FF4E00]">X402USDCReceipt</span>.pay(paymentId, resourceHash, recipient, usdc, amount, expiresAt);</div>
+                <div className="text-[#4ade80]">// → Event: X402Paid (on-chain receipt) ✓</div>
               </div>
             </div>
           </div>
@@ -246,12 +246,12 @@ Agentic Commerce on BNB Chain
             <StepCard
               number="01"
               title="Agent Requests Service"
-              description="GET /api/premium-data → Server returns HTTP 402 Payment Required with price."
+              description="GET /api/premium/compute → Server returns HTTP 402 Payment Required with the payment challenge."
             />
             <StepCard
               number="02"
               title="x402 Payment"
-              description="Agent calls x402Receipt.record() with payment details. On-chain proof created."
+              description="Agent pays via X402USDCReceipt.pay() in USDC (mUSDC on testnet). An on-chain receipt is emitted."
             />
             <StepCard
               number="03"
