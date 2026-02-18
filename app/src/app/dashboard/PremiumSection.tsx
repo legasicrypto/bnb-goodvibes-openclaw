@@ -94,7 +94,7 @@ export default function PremiumSection() {
                     setModalOpen(true);
                   }}
                 >
-                  One-click Unlock
+                  Unlock (one-click)
                 </button>
                 <Link className="text-sm font-semibold text-white bg-[#0a2535] hover:bg-[#123247] px-3 py-2 rounded-lg" href={x.href}>
                   {unlocked ? "View" : "Unlock"}

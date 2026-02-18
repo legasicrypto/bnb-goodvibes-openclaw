@@ -22,13 +22,12 @@ export default function Home() {
             <Link href="/dashboard" className="text-sm text-[#8a9aa8] hover:text-white transition">
               Dashboard
             </Link>
-            <a
-              href="https://bnb.legasi.io"
-              target="_blank"
+            <Link
+              href="/demo"
               className="h-9 px-4 bg-[#FF4E00] hover:bg-[#E64500] text-white text-sm font-medium rounded-lg transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#FF4E00]/20 flex items-center glow-btn"
             >
               Live Demo
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
@@ -55,7 +54,7 @@ Agentic Commerce on BNB Chain
           </h1>
 
           <p className="text-lg md:text-xl text-[#8a9aa8] max-w-2xl mx-auto mb-4 leading-relaxed animate-fade-in-up animate-delay-200">
-            Agents borrow USDC, buy API access via HTTP 402 (x402), and build on-chain reputation.
+            Agents borrow USDC, buy API access via HTTP 402 using x402 receipts, and build on-chain reputation.
           </p>
           <p className="text-xs text-[#6a7a88] max-w-2xl mx-auto mb-6 animate-fade-in-up animate-delay-200">
             Demo note: on BSC testnet we use mintable mock tokens (mUSDC/mWETH/mWBTC) to showcase the exact same flow.
@@ -66,7 +65,7 @@ Agentic Commerce on BNB Chain
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animate-delay-300">
             <Link
-              href="/faucet"
+              href="/demo"
               className="h-14 px-8 bg-[#FF4E00] hover:bg-[#E64500] text-white font-semibold rounded-xl transition-all hover:scale-105 hover:shadow-xl hover:shadow-[#FF4E00]/30 flex items-center justify-center gap-2 glow-btn animate-pulse-glow"
             >
               Run the demo in 60s
@@ -88,20 +87,20 @@ Agentic Commerce on BNB Chain
       <section className="py-16 px-6 border-y border-[#0a2535] bg-[#00111a]/50 backdrop-blur-sm">
         <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-6">
           <div className="text-center group">
+            <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">Credit</div>
+            <div className="text-xs text-[#5a6a78]">Borrow against collateral</div>
+          </div>
+          <div className="text-center group">
             <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">x402</div>
-            <div className="text-xs text-[#5a6a78]">Native Payments</div>
+            <div className="text-xs text-[#5a6a78]">On-chain receipts</div>
           </div>
           <div className="text-center group">
-            <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">7</div>
-            <div className="text-xs text-[#5a6a78]">Contracts</div>
+            <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">Reputation</div>
+            <div className="text-xs text-[#5a6a78]">Repay to unlock better terms</div>
           </div>
           <div className="text-center group">
-            <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">Low</div>
-            <div className="text-xs text-[#5a6a78]">Fees</div>
-          </div>
-          <div className="text-center group">
-            <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">0.09%</div>
-            <div className="text-xs text-[#5a6a78]">Flash Fee</div>
+            <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">Yield</div>
+            <div className="text-xs text-[#5a6a78]">Agents can provide liquidity</div>
           </div>
           <div className="text-center group">
             <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">BNB Chain</div>
@@ -146,7 +145,7 @@ Agentic Commerce on BNB Chain
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-4">How Agents Pay for Services</h2>
               <p className="text-lg text-[#8a9aa8] mb-6 max-w-2xl">
-                HTTP 402 "Payment Required" — agents use their credit lines to pay for APIs, data, and services on-chain.
+                HTTP 402 "Payment Required": agents use their credit lines to pay for APIs, data, and services on-chain.
               </p>
               <div className="grid md:grid-cols-3 gap-4 mb-8">
                 <div className="p-4 bg-[#001520]/60 rounded-xl">
@@ -216,8 +215,8 @@ Agentic Commerce on BNB Chain
               <IconStar />
             </FeatureCard>
             <FeatureCard
-              title="Flash Loans"
-              description="Zero-collateral loans for arbitrage. 0.09% fee, same-transaction repayment."
+              title="Agent Policies"
+              description="On-chain limits (daily cap, auto-repay, x402 enablement) for safe autonomous execution."
             >
               <IconBolt />
             </FeatureCard>
@@ -229,7 +228,7 @@ Agentic Commerce on BNB Chain
             </FeatureCard>
             <FeatureCard
               title="LP Yield"
-              description="Agents can provide liquidity to earn yield — and deepen pools that power agent credit."
+              description="Agents can provide liquidity to earn yield, and deepen pools that power agent credit."
             >
               <IconLink />
             </FeatureCard>
