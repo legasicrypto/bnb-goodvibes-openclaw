@@ -235,14 +235,14 @@ function Dashboard() {
   const [depositAmount, setDepositAmount] = useState("");
   const [depositAsset, setDepositAsset] = useState<"WETH" | "WBTC">("WETH");
   const [borrowAmount, setBorrowAmount] = useState("");
-  const [borrowAsset, setBorrowAsset] = useState<"USDC">("USDC");
+  const [borrowAsset, setBorrowAsset] = useState<"mUSDC">("mUSDC");
   const [repayAmount, setRepayAmount] = useState("");
-  const [repayAsset, setRepayAsset] = useState<"USDC">("USDC");
+  const [repayAsset, setRepayAsset] = useState<"mUSDC">("mUSDC");
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [withdrawAsset, setWithdrawAsset] = useState<"WETH" | "WBTC">("WETH");
   const [lpAmount, setLpAmount] = useState("");
-  const [lpAsset, setLpAsset] = useState<"USDC">("USDC");
-  const [lpPosition, setLpPosition] = useState({ USDC: 0 });
+  const [lpAsset, setLpAsset] = useState<"mUSDC">("mUSDC");
+  const [lpPosition, setLpPosition] = useState({ mUSDC: 0 });
 
   const [accountAgeDays, setAccountAgeDays] = useState(0);
 
@@ -317,7 +317,7 @@ function Dashboard() {
   const healthFactor = collateralValue > 0 ? (collateralValue * maxLTV / 100) / Math.max(borrowedValue, 1) : 0;
   const maxBorrow = Math.max(0, collateralValue * maxLTV / 100 - borrowedValue);
   const maxWithdrawValue = Math.max(0, collateralValue - (borrowedValue * 100 / maxLTV));
-  const lpTotalValue = lpPosition.USDC * priceUsdcUsd;
+  const lpTotalValue = lpPosition.mUSDC * priceUsdcUsd;
 
   const toAmount = (v: string, decimals: number) => parseUnits(v || "0", decimals);
   const toUSDC = (v: string) => toAmount(v, 6);
@@ -557,9 +557,9 @@ function Dashboard() {
                       <h3 className="text-xl font-semibold mb-2">Borrow</h3>
                       <p className="text-sm text-[#6a7a88] mb-6">Borrow stablecoins against your collateral</p>
                       <div className="flex gap-2 mb-4">
-                        {(["USDC"] as const).map((asset) => (
+                        {(["mUSDC"] as const).map((asset) => (
                           <button key={asset} onClick={() => setBorrowAsset(asset)} className="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 bg-[#FF4E00]/20 text-[#FF4E00] border border-[#FF4E00]">
-                            USDC <span className="text-xs opacity-60">{borrowApy}% APY</span>
+                            mUSDC <span className="text-xs opacity-60">{borrowApy}% APY</span>
                           </button>
                         ))}
                       </div>
@@ -580,7 +580,7 @@ function Dashboard() {
                       <div className="p-4 bg-[#001520]/50 rounded-xl space-y-2">
                         <div className="flex justify-between text-sm"><span className="text-[#6a7a88]">Available to borrow</span><span className="text-[#FF4E00] font-semibold">${maxBorrow.toFixed(2)}</span></div>
                         <div className="flex justify-between text-sm"><span className="text-[#6a7a88]">Borrow APY</span><span className="text-white">{borrowApy}%</span></div>
-                        <div className="flex justify-between text-sm"><span className="text-[#6a7a88]">Pool Liquidity</span><span className="text-white">{poolLiquidity.toLocaleString()} USDC</span></div>
+                        <div className="flex justify-between text-sm"><span className="text-[#6a7a88]">Pool Liquidity</span><span className="text-white">{poolLiquidity.toLocaleString()} mUSDC</span></div>
                       </div>
                       {poolLiquidity < 10000 && (
                         <button 
@@ -766,10 +766,10 @@ function Dashboard() {
 
                   {/* Asset selector */}
                   <div className="flex gap-2 mb-4">
-                    {(["USDC"] as const).map((asset) => (
+                    {(["mUSDC"] as const).map((asset) => (
                       <button
                         key={asset}
-                        onClick={() => setLpAsset("USDC")}
+                        onClick={() => setLpAsset("mUSDC")}
                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 bg-[#4ade80]/20 text-[#4ade80] border border-[#4ade80]`}
                       >
                         {asset}
@@ -788,12 +788,12 @@ function Dashboard() {
                         className="w-full h-14 bg-[#001520] border border-[#0a2535] rounded-xl px-4 pr-20 text-white placeholder-[#3a4a58] focus:outline-none focus:border-[#4ade80] transition-all"
                       />
                       <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6a7a88] text-sm font-medium">
-                        USDC
+                        mUSDC
                       </span>
                     </div>
                     {lpTab === "withdraw" && (
                       <button
-                        onClick={() => setLpAmount(lpPosition.USDC.toString())}
+                        onClick={() => setLpAmount(lpPosition.mUSDC.toString())}
                         className="h-14 px-4 bg-[#0a2535] hover:bg-[#1a3545] text-[#4ade80] font-medium rounded-xl transition-all"
                       >
                         MAX
@@ -805,11 +805,11 @@ function Dashboard() {
                         if (lpTab === "deposit") {
                           await writeContractAsync({ address: usdc, abi: erc20Abi, functionName: "approve", args: [lp, toUSDC(lpAmount)] });
                           await writeContractAsync({ address: lp, abi: lpAbi, functionName: "deposit", args: [toUSDC(lpAmount)] });
-                          setLpPosition(prev => ({ ...prev, USDC: prev.USDC + amount }));
+                          setLpPosition(prev => ({ ...prev, mUSDC: prev.mUSDC + amount }));
                         } else {
                           const shares = lpSharesForAmount(toUSDC(lpAmount));
                           await writeContractAsync({ address: lp, abi: lpAbi, functionName: "withdraw", args: [shares] });
-                          setLpPosition(prev => ({ ...prev, USDC: Math.max(0, prev.USDC - amount) }));
+                          setLpPosition(prev => ({ ...prev, mUSDC: Math.max(0, prev.mUSDC - amount) }));
                         }
                         setLpAmount("");
                       }, lpTab === "deposit" ? "LP deposit" : "LP withdraw")}
@@ -824,13 +824,13 @@ function Dashboard() {
 
                   <div className="mt-6 p-4 bg-[#001520]/50 rounded-xl space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-[#6a7a88]">Your USDC in pool</span>
-                      <span className="text-white font-semibold">{lpPosition.USDC.toFixed(2)} USDC</span>
+                      <span className="text-[#6a7a88]">Your mUSDC in pool</span>
+                      <span className="text-white font-semibold">{lpPosition.mUSDC.toFixed(2)} mUSDC</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-[#6a7a88]">Estimated yearly earnings</span>
                       <span className="text-[#4ade80] font-semibold">
-                        ${(lpPosition.USDC * supplyApy / 100).toFixed(2)}
+                        ${(lpPosition.mUSDC * supplyApy / 100).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -843,9 +843,9 @@ function Dashboard() {
                   <h3 className="text-sm font-medium text-[#8a9aa8] mb-4">Your LP Positions</h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center py-2">
-                      <span className="text-white">USDC</span>
+                      <span className="text-white">mUSDC</span>
                       <div className="text-right">
-                        <div className="text-white font-medium">{lpPosition.USDC.toFixed(2)}</div>
+                        <div className="text-white font-medium">{lpPosition.mUSDC.toFixed(2)}</div>
                         <div className="text-xs text-[#4ade80]">{supplyApy.toFixed(1)}% APY</div>
                       </div>
                     </div>

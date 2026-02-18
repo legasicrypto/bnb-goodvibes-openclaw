@@ -102,7 +102,7 @@ export default function Home() {
           </div>
           <div className="text-center group">
             <div className="text-3xl md:text-4xl font-bold text-[#FF4E00] mb-2 group-hover:scale-110 transition-transform">BNB Chain</div>
-            <div className="text-xs text-[#5a6a78]">Base Sepolia</div>
+            <div className="text-xs text-[#5a6a78]">BSC Testnet (chainId 97)</div>
           </div>
         </div>
       </section>
