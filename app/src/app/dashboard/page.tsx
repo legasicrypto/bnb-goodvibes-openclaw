@@ -588,7 +588,7 @@ function Dashboard() {
                             return writeContractAsync({ address: usdc, abi: erc20Abi, functionName: "mint", args: [lending, BigInt(100000 * 1e6)] });
                           }, "Seed Pool")}
                           className="mt-3 w-full h-10 bg-[#0a2535] hover:bg-[#1a3545] text-[#FF4E00] text-sm font-medium rounded-xl transition-all border border-[#FF4E00]/30">
-                          ⚡ Seed Pool with 100k USDC (demo)
+                          Seed Pool with 100k USDC (demo)
                         </button>
                       )}
                     </div>
@@ -682,68 +682,62 @@ function Dashboard() {
                   )}
                 </div>
 
-                {/* x402 Payment Demo */}
+                {/* x402 Payment Demo (best-in-class) */}
                 <div className="mt-6 p-6 bg-gradient-to-br from-[#051525]/80 to-[#0a1a2e]/80 border border-[#1a3545] rounded-2xl backdrop-blur-sm">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-[#FF4E00]/10 flex items-center justify-center">
-                      <span className="text-lg">⚡</span>
+                    <div className="w-10 h-10 rounded-xl bg-[#FF4E00]/10 flex items-center justify-center text-[#FF4E00]">
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 2L3 14h7l-1 8 12-14h-7l-1-6z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+                      </svg>
                     </div>
                     <div>
                       <h3 className="text-base font-semibold text-white">x402 Payment Demo</h3>
-                      <p className="text-xs text-[#6a7a88]">HTTP 402 machine-to-machine payments</p>
-                    </div>
-                  </div>
-                  
-                  <div className="p-4 bg-[#001520]/60 rounded-xl mb-4">
-                    <div className="text-xs text-[#6a7a88] mb-2">Simulated Service Request</div>
-                    <div className="font-mono text-sm text-white bg-[#000a10] p-3 rounded-lg">
-                      <div className="text-[#FF4E00]">GET /api/premium-data</div>
-                      <div className="text-[#6a7a88]">→ 402 Payment Required</div>
-                      <div className="text-[#4ade80]">Cost: 1 USDC</div>
+                      <p className="text-xs text-[#6a7a88]">HTTP 402 → on-chain mUSDC receipt → service delivered</p>
                     </div>
                   </div>
 
-                  <button 
-                    onClick={() => safeTx(async () => {
-                      // Generate payment ID
-                      const paymentId = `0x${Array.from(crypto.getRandomValues(new Uint8Array(32))).map(b => b.toString(16).padStart(2, '0')).join('')}` as `0x${string}`;
-                      const serviceProvider = "0x000000000000000000000000000000000000dEaD" as `0x${string}`; // Demo recipient
-                      const paymentAmount = BigInt(1_000_000); // 1 USDC
-                      
-                      // First approve USDC to x402 contract
-                      const approveHash = await writeContractAsync({ 
-                        address: usdc, 
-                        abi: erc20Abi, 
-                        functionName: "approve", 
-                        args: [x402, paymentAmount] 
-                      });
-                      if (publicClient) await publicClient.waitForTransactionReceipt({ hash: approveHash });
-                      
-                      // Record the payment on-chain
-                      return writeContractAsync({ 
-                        address: x402, 
-                        abi: x402Abi, 
-                        functionName: "record", 
-                        args: [paymentId, address!, serviceProvider, paymentAmount] 
-                      });
-                    }, "x402 Payment")}
-                    disabled={!agentConfig.x402Enabled}
-                    className="w-full h-12 bg-[#FF4E00] hover:bg-[#E64500] text-white font-semibold rounded-xl transition-all hover:scale-[1.02] disabled:bg-[#0a2535] disabled:text-[#3a4a58] disabled:hover:scale-100 flex items-center justify-center gap-2"
-                  >
-                    <span>💸</span> Pay 1 USDC via x402
-                  </button>
-                  
+                  <div className="p-4 bg-[#001520]/60 rounded-xl mb-4">
+                    <div className="text-xs text-[#6a7a88] mb-2">Simulated Service Request</div>
+                    <div className="font-mono text-sm text-white bg-[#000a10] p-3 rounded-lg">
+                      <div className="text-[#FF4E00]">GET /api/premium/compute</div>
+                      <div className="text-[#6a7a88]">→ 402 Payment Required</div>
+                      <div className="text-[#4ade80]">Cost: 1 mUSDC</div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      href="/premium?endpoint=compute"
+                      className={`h-12 px-4 bg-[#0a2535] hover:bg-[#123247] text-white font-semibold rounded-xl transition-all flex items-center justify-center gap-2 ${!agentConfig.x402Enabled ? "opacity-60 pointer-events-none" : ""}`}
+                    >
+                      Pay via x402
+                    </Link>
+
+                    <Link
+                      href="/premium?endpoint=compute&mode=borrowpay"
+                      className={`h-12 px-4 bg-[#FF4E00] hover:bg-[#E64500] text-white font-semibold rounded-xl transition-all flex items-center justify-center gap-2 ${!agentConfig.x402Enabled ? "opacity-60 pointer-events-none" : ""}`}
+                    >
+                      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M9 5l3-3 3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M6 12h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M7 22h10a3 3 0 003-3v-5a3 3 0 00-3-3H7a3 3 0 00-3 3v5a3 3 0 003 3z" stroke="currentColor" strokeWidth="2"/>
+                      </svg>
+                      Borrow & Pay (x402)
+                    </Link>
+                  </div>
+
                   {!agentConfig.x402Enabled && (
-                    <p className="text-xs text-[#6a7a88] text-center mt-3">Enable x402 in Agent Configuration first</p>
+                    <p className="text-xs text-[#6a7a88] mt-3">Enable x402 in Agent Configuration first (this is the on-chain policy gate).</p>
                   )}
-                  
+
                   <div className="mt-4 text-xs text-[#6a7a88]">
                     <div className="font-medium text-white mb-2">How it works:</div>
                     <ol className="space-y-1 list-decimal list-inside">
-                      <li>Agent requests premium API endpoint</li>
-                      <li>Server returns HTTP 402 with payment details</li>
-                      <li>Agent pays via x402Receipt contract</li>
-                      <li>Server verifies on-chain receipt, delivers data</li>
+                      <li>Agent requests premium endpoint</li>
+                      <li>Server returns HTTP 402 challenge</li>
+                      <li>Agent pays in mUSDC → on-chain receipt</li>
+                      <li>Server verifies receipt + x402Enabled policy → delivers response</li>
                     </ol>
                   </div>
                 </div>

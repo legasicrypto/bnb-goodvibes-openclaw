@@ -55,11 +55,11 @@ export async function GET() {
       
       // Benefits
       benefits: [
-        '🎯 Priority access to Legasi credit protocol',
-        '💰 Agent-optimized borrowing terms',
-        '⚡ Sub-second credit decisions',
-        '🔗 x402 payment protocol ready',
-        '📊 On-chain reputation building',
+        'Priority access to Legasi credit protocol',
+        'Agent-optimized borrowing terms',
+        'Sub-second credit decisions',
+        'x402 payment protocol ready',
+        'On-chain reputation building',
       ],
       
       // Links
