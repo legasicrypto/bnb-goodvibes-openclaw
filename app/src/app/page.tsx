@@ -8,9 +8,9 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#001520]/80 backdrop-blur-xl border-b border-[#0a2535]">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center">
+          <Link href="/dashboard" className="flex items-center" aria-label="Go to Dashboard">
             <img src="/legasi-logo.svg" alt="Legasi" className="h-8 w-auto" />
-          </div>
+          </Link>
 
           <div className="hidden md:flex items-center gap-8">
             <a href="#features" className="text-[#8a9aa8] hover:text-white transition-all hover:scale-105 text-sm">Features</a>
