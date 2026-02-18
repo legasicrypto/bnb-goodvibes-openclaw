@@ -61,7 +61,7 @@ BNB chain choice: low fees + fast finality → viable for high-frequency agent a
 If mint fails:
 - Reconnect wallet
 - Verify chainId=97
-- Retry token-by-token (Mint USDC, Mint WETH, Mint WBTC)
+- Retry token-by-token (Mint mUSDC, Mint mWETH, Mint mWBTC)
 
 ### B) Credit flow (2–3 min)
 1. Go to **Dashboard**
@@ -87,7 +87,7 @@ If mint fails:
    - pay() → on-chain receipt
 4. Show **BscScan links** + **Access granted**
 
-**Narration:** agents borrow USDC as working capital, then buy API access via HTTP 402 + on-chain receipts.
+**Narration:** agents borrow USDC as working capital (mUSDC on testnet), then buy API access via HTTP 402 + on-chain receipts.
 
 ### E) GAD (30–60s)
 - Explain GAD: gradual deleveraging vs hard liquidation

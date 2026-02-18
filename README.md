@@ -160,6 +160,11 @@ await flash.flashLoan(usdc, amount, receiver, data);
 
 ## Agent Integration
 
+### OpenClaw Agent Skills (optional)
+
+This repo ships OpenClaw-compatible agent skills under `.agents/skills/` (including Coinbase Agentic Wallet via `npx awal@latest`).
+The public web demo uses MetaMask for judge-friendly verification.
+
 ### Coinbase Agentic Wallet
 
 We support **Coinbase Agentic Wallet** for agent authentication:

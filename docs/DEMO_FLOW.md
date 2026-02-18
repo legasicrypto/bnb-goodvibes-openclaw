@@ -11,15 +11,15 @@
 1. Go to **Dashboard**
 2. **Supply Collateral**: Select WETH, enter 5, click Supply (2 signatures: approve + deposit)
 3. See collateral value update (~$13,000)
-4. **Borrow**: Enter 1000 USDC, click Borrow
+4. **Borrow**: Enter 1000 mUSDC, click Borrow
 5. See borrowed amount update + LTV health
-6. **Repay**: Enter 1000, click Repay (2 signatures: approve + repay)
+6. **Repay**: Enter 1000 mUSDC, click Repay (2 signatures: approve + repay)
 7. **Withdraw**: Click MAX, click Withdraw
 8. Show **Reputation** card: score increased after repay
 
 ### LP Yield (1min)
 1. Switch to **LP** tab
-2. **Deposit**: Enter 500 USDC, click Deposit
+2. **Deposit**: Enter 500 mUSDC, click Deposit
 3. See LP shares + APY display
 4. **Withdraw**: Enter shares, click Withdraw
 
@@ -29,7 +29,7 @@
 3. Explain: agents can borrow autonomously within limits
 
 ### Key Differentiators (1min)
-- **Zero gas**: BNB Chain provides gasless transactions
+- **Low fees**: BNB Chain makes high-frequency agent actions viable
 - **Reputation on-chain**: Score improves with repayments
 - **Gradual deleveraging**: No sudden liquidations
 - **x402 native**: HTTP 402 payments for agent services
