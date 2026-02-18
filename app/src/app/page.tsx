@@ -301,6 +301,43 @@ Agentic Commerce on BNB Chain
         </div>
       </section>
 
+      {/* Proof */}
+      <section className="py-16 px-6 bg-[#00111a] relative">
+        <div className="max-w-5xl mx-auto">
+          <div className="p-6 md:p-8 bg-[#051525]/80 border border-[#0a2535] rounded-2xl backdrop-blur-sm">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <h3 className="text-xl font-semibold">Deployed on BSC Testnet</h3>
+                <p className="mt-1 text-sm text-[#6a7a88]">Proof links (BscScan) for judges & builders.</p>
+              </div>
+              <div className="flex gap-3">
+                <Link href="/demo" className="h-10 px-4 bg-[#0a2535] hover:bg-[#123247] text-white rounded-xl font-semibold inline-flex items-center">Run Demo Flow →</Link>
+                <Link href="/premium" className="h-10 px-4 bg-[#FF4E00] hover:bg-[#E64500] text-white rounded-xl font-semibold inline-flex items-center">Open Premium Hub →</Link>
+              </div>
+            </div>
+
+            <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+              <a className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl hover:border-[#FF4E00]/40 transition-colors" href={`https://testnet.bscscan.com/address/${"0x06bd127D48D9b82885b2692628d3bf12CdFCC5d7"}`} target="_blank" rel="noreferrer">
+                <div className="text-[#8a9aa8] text-xs">LegasiLending</div>
+                <div className="mt-1 font-mono text-xs break-all">0x06bd…C5d7</div>
+              </a>
+              <a className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl hover:border-[#FF4E00]/40 transition-colors" href={`https://testnet.bscscan.com/address/${"0xDd5605472769C91C3592023A445f1B4aB0cAED7a"}`} target="_blank" rel="noreferrer">
+                <div className="text-[#8a9aa8] text-xs">LegasiLP (yield vault)</div>
+                <div className="mt-1 font-mono text-xs break-all">0xDd56…ED7a</div>
+              </a>
+              <a className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl hover:border-[#FF4E00]/40 transition-colors" href={`https://testnet.bscscan.com/address/${"0x570BF4EdE1029c7Bc610f507c7D7a252F7328F24"}`} target="_blank" rel="noreferrer">
+                <div className="text-[#8a9aa8] text-xs">X402USDCReceipt (v2)</div>
+                <div className="mt-1 font-mono text-xs break-all">0x570B…8F24</div>
+              </a>
+            </div>
+
+            <div className="mt-4 text-xs text-[#6a7a88]">
+              Note: the UI talks about USDC as the product target; on testnet the demo uses mintable mock tokens (mUSDC).
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="py-10 px-6 border-t border-[#0a2535]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
