@@ -3,7 +3,7 @@
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useAccount, useConnect, useDisconnect, useSignMessage, useWriteContract } from "wagmi";
+import { useAccount, useConnect, useDisconnect, usePublicClient, useSignMessage, useWriteContract } from "wagmi";
 import { injected } from "wagmi/connectors";
 import { parseUnits, toHex } from "viem";
 import { CONTRACTS } from "@/lib/evmContracts";
@@ -66,6 +66,7 @@ function PremiumInner() {
   const { disconnect } = useDisconnect();
   const { signMessageAsync } = useSignMessage();
   const { writeContractAsync } = useWriteContract();
+  const publicClient = usePublicClient();
 
   const [challenge, setChallenge] = useState<Challenge | null>(null);
   const [result, setResult] = useState<any>(null);
@@ -155,6 +156,8 @@ function PremiumInner() {
         args: [challenge.contract, BigInt(challenge.amount)],
       });
       setLastApproveTx(approveHash);
+      setStatus("Waiting approval confirmation...");
+      if (publicClient) await publicClient.waitForTransactionReceipt({ hash: approveHash });
 
       setStatus("Paying (on-chain receipt)...");
       const payHash = await writeContractAsync({
@@ -171,6 +174,8 @@ function PremiumInner() {
         ],
       });
       setLastPaymentTx(payHash);
+      setStatus("Waiting payment confirmation...");
+      if (publicClient) await publicClient.waitForTransactionReceipt({ hash: payHash });
 
       setStatus("Retrying premium request...");
       await fetchPremium({
@@ -182,7 +187,7 @@ function PremiumInner() {
       setError(e?.shortMessage || e?.message || "Payment failed");
       setStatus(null);
     }
-  }, [payer, challenge, fetchPremium, signMessageAsync, writeContractAsync]);
+  }, [payer, challenge, fetchPremium, signMessageAsync, writeContractAsync, publicClient]);
 
   return (
     <main className="min-h-screen bg-[#001520] text-white px-6 py-16">
