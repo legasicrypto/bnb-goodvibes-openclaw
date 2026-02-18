@@ -25,9 +25,9 @@ function IconLock({ className = "h-5 w-5" }: { className?: string }) {
 }
 
 const endpoints = [
-  { key: "quote", title: "Pro Terms", desc: "Tiered pricing, APR & limits", href: "/premium?endpoint=quote" },
-  { key: "agent-config", title: "Pro Agent Limits", desc: "Policy JSON + controls", href: "/premium?endpoint=agent-config" },
-  { key: "dataset", title: "Export Dataset", desc: "Premium feed (JSON)", href: "/premium?endpoint=dataset" },
+  { key: "quote", title: "Pro Terms", desc: "Tiered pricing, APR & limits", href: "/premium?endpoint=quote", hrefBorrow: "/premium?endpoint=quote&mode=borrowpay" },
+  { key: "agent-config", title: "Pro Agent Limits", desc: "Policy JSON + controls", href: "/premium?endpoint=agent-config", hrefBorrow: "/premium?endpoint=agent-config&mode=borrowpay" },
+  { key: "dataset", title: "Export Dataset", desc: "Premium feed (JSON)", href: "/premium?endpoint=dataset", hrefBorrow: "/premium?endpoint=dataset&mode=borrowpay" },
 ] as const;
 
 function readProof(key: string): Proof | null {
@@ -80,10 +80,15 @@ export default function PremiumSection() {
                 {!unlocked && <span className="text-[#6a7a88]"><IconLock /></span>}
               </div>
               <div className="text-xs text-[#6a7a88] mt-1">{x.desc}</div>
-              <div className="mt-3 flex items-center gap-2">
+              <div className="mt-3 flex flex-wrap items-center gap-2">
                 <Link className="text-sm font-semibold text-white bg-[#FF4E00] hover:bg-[#E64500] px-3 py-2 rounded-lg" href={x.href}>
                   {unlocked ? "View" : "Unlock via x402"}
                 </Link>
+                {!unlocked && (
+                  <Link className="text-sm font-semibold text-white bg-[#0a2535] hover:bg-[#123247] px-3 py-2 rounded-lg" href={x.hrefBorrow}>
+                    Borrow & Unlock
+                  </Link>
+                )}
                 {unlocked && <span className="text-xs text-[#8a9aa8]">Unlocked</span>}
               </div>
             </div>

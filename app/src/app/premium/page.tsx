@@ -3,10 +3,23 @@
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useAccount, useConnect, useDisconnect, usePublicClient, useSignMessage, useWriteContract } from "wagmi";
+import { useAccount, useConnect, useDisconnect, usePublicClient, useReadContract, useSignMessage, useWriteContract } from "wagmi";
 import { injected } from "wagmi/connectors";
-import { parseUnits, toHex } from "viem";
+import { parseUnits, toHex, formatUnits } from "viem";
 import { CONTRACTS } from "@/lib/evmContracts";
+
+const lendingAbi = [
+  { name: "initializePosition", type: "function", stateMutability: "nonpayable", inputs: [], outputs: [] },
+  { name: "borrow", type: "function", stateMutability: "nonpayable", inputs: [
+    { name: "token", type: "address" },
+    { name: "amount", type: "uint256" },
+  ], outputs: [] },
+  { name: "configureAgent", type: "function", stateMutability: "nonpayable", inputs: [
+    { name: "dailyLimitUsd6", type: "uint256" },
+    { name: "autoRepay", type: "bool" },
+    { name: "x402", type: "bool" },
+  ], outputs: [] },
+] as const;
 
 const erc20Abi = [
   {
@@ -78,6 +91,9 @@ function PremiumInner() {
   const payer = address as `0x${string}` | undefined;
 
   const searchParams = useSearchParams();
+  const mode = (searchParams.get("mode") || "").trim();
+
+  const lending = CONTRACTS.lending as `0x${string}`;
 
   const routes = useMemo(() => ([
     { key: "compute", name: "Compute", path: "/api/premium/compute" },
@@ -94,6 +110,14 @@ function PremiumInner() {
     const found = routes.find((r) => r.key === ep);
     if (found) setSelected(found.path);
   }, [searchParams, routes]);
+
+  const { data: usdcBalanceRaw, refetch: refetchUsdc } = useReadContract({
+    address: CONTRACTS.usdc as `0x${string}`,
+    abi: erc20Abi,
+    functionName: "balanceOf",
+    args: [payer ?? "0x0000000000000000000000000000000000000000"],
+  });
+  const usdcBalance = usdcBalanceRaw ? Number(formatUnits(usdcBalanceRaw, 6)) : 0;
 
   const fetchPremium = useCallback(async (headers?: Record<string, string>) => {
     setError(null);
@@ -145,6 +169,38 @@ function PremiumInner() {
     }
 
     try {
+      // Optional mode: borrow missing mUSDC from Legasi before paying.
+      if (mode === "borrowpay") {
+        setStatus("Ensuring agent policy (x402Enabled)...");
+        await writeContractAsync({
+          address: lending,
+          abi: lendingAbi,
+          functionName: "configureAgent",
+          args: [BigInt(5_000_000_000), true, true], // $5,000/day (usd6)
+        });
+
+        setStatus("Ensuring position exists...");
+        try {
+          await writeContractAsync({ address: lending, abi: lendingAbi, functionName: "initializePosition" });
+        } catch {}
+
+        await refetchUsdc();
+        const need = Number(challenge.amount) / 1e6;
+        if (usdcBalance < need) {
+          const delta = BigInt(challenge.amount) - BigInt(usdcBalanceRaw ?? BigInt(0));
+          if (delta > BigInt(0)) {
+            setStatus(`Borrowing ${Number(delta) / 1e6} mUSDC...`);
+            const bh = await writeContractAsync({
+              address: lending,
+              abi: lendingAbi,
+              functionName: "borrow",
+              args: [challenge.token, delta],
+            });
+            if (publicClient) await publicClient.waitForTransactionReceipt({ hash: bh });
+          }
+        }
+      }
+
       setStatus("Signing x402 message...");
       const signature = await signMessageAsync({ message: challenge.signingMessage });
 
@@ -200,7 +256,7 @@ function PremiumInner() {
       setError(e?.shortMessage || e?.message || "Payment failed");
       setStatus(null);
     }
-  }, [payer, challenge, fetchPremium, signMessageAsync, writeContractAsync, publicClient]);
+  }, [payer, challenge, fetchPremium, signMessageAsync, writeContractAsync, publicClient, mode, lending, usdcBalance, usdcBalanceRaw, refetchUsdc]);
 
   return (
     <main className="min-h-screen bg-[#001520] text-white px-6 py-16">
