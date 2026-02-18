@@ -7,6 +7,7 @@
     "test": "hardhat test",
     "deploy": "hardhat run scripts/deploy-all.ts --network bscTestnet",
     "smoke:bsc": "hardhat run scripts/smoke-bsc.ts --network bscTestnet",
+    "agent:e2e": "npx ts-node scripts/agent-e2e.ts",
     "lint": "echo 'no lint'"
   },
   "devDependencies": {
