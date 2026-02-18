@@ -39,3 +39,7 @@ npm run agent:e2e
   - reputation before/after repay
 
 This is the cleanest proof that **agents can run on credit** and **buy API services via x402** on BNB chain.
+
+## Coinbase Agentic Wallet (optional)
+We also ship OpenClaw `.agents/skills/` for Coinbase Agentic Wallet (`npx awal@latest`) authentication & operations.
+The public web demo uses MetaMask for judge-friendly verification, but the agent wallet path is available for agent integrations.

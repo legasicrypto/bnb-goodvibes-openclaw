@@ -31,5 +31,6 @@
 - Faucet (tBNB): https://testnet.bscscan.com/tx/0x23a3ecb2ea82328c37797734b704ff48eff50b368f64130f9cf8edf9f9b5cdb5
 - Borrow mUSDC: https://testnet.bscscan.com/tx/0xe26324b66cdb63f9448d973a1589e6f87e87f811e544cff2f48171de62d6bc7e
 - Repay mUSDC: https://testnet.bscscan.com/tx/0x7b2ef68207ff4706fd3cdb4979ffa414078bc42b166a328de195afd783a317e1
+- x402 pay() (X402USDCReceipt v2): https://testnet.bscscan.com/tx/0x1e13cace3bc282d0e4dad4db96e5927ff6fe6a401c129e454572c259596ee001
 
 *Last updated: 2026-02-18*
