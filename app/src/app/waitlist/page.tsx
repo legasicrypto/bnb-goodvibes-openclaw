@@ -313,10 +313,10 @@ export default function WaitlistPage() {
             <img src="/legasi-logo.svg" alt="Legasi" className="h-6 w-auto" />
           </Link>
           <div className="flex gap-8 text-sm">
-            <a href="https://x.com/legasi_xyz" target="_blank" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
+            <a href="https://x.com/legasi_xyz" target="_blank" rel="noreferrer" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
               Twitter
             </a>
-            <a href="https://t.me/legasi_community" target="_blank" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
+            <a href="https://t.me/legasi_community" target="_blank" rel="noreferrer" className="text-[#5a6a78] hover:text-[#FF4E00] transition-colors">
               Telegram
             </a>
           </div>

@@ -898,7 +898,7 @@ function Nav({ connected, onConnect, address }: { connected: boolean; onConnect:
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#001520]/80 backdrop-blur-xl border-b border-[#0a2535]">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3" aria-label="Go to Home">
-          <img src="/legasi-logo.svg" alt="Legasi" className="h-7 w-auto" />
+          <img src="/legasi-logo.svg" alt="Legasi" className="h-8 w-auto" />
         </Link>
         <div className="flex items-center gap-3">
           <a href="/faucet" className="text-sm text-[#8a9aa8] hover:text-white">Faucet</a>
