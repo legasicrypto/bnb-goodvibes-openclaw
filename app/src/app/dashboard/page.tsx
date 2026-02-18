@@ -4,10 +4,37 @@ import { useState, useEffect, Suspense } from "react";
 import { useAccount, useConnect, useDisconnect, useWriteContract, useReadContract, usePublicClient } from "wagmi";
 import { injected } from "wagmi/connectors";
 import Link from "next/link";
+import PremiumSection from "./PremiumSection";
 import { parseUnits, formatUnits } from "viem";
 import { CONTRACTS } from "@/lib/evmContracts";
 
 // Toast
+function IconCheck({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function IconX({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function IconLock({ className = "h-5 w-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 11V8a5 5 0 0110 0v3" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/>
+      <path d="M6.5 11h11A2.5 2.5 0 0120 13.5v6A2.5 2.5 0 0117.5 22h-11A2.5 2.5 0 014 19.5v-6A2.5 2.5 0 016.5 11z" stroke="currentColor" strokeWidth="2.2"/>
+      <path d="M12 16v2" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
 function Toast({ message, type, onClose }: { message: string; type: "success" | "error"; onClose: () => void }) {
   useEffect(() => {
     const timer = setTimeout(onClose, 4000);
@@ -18,9 +45,9 @@ function Toast({ message, type, onClose }: { message: string; type: "success" | 
     <div className={`fixed bottom-6 right-6 z-50 px-6 py-4 rounded-xl shadow-2xl backdrop-blur-sm flex items-center gap-3 animate-slide-up ${
       type === "success" ? "bg-green-500/90 text-white" : "bg-red-500/90 text-white"
     }`}>
-      <span className="text-xl">{type === "success" ? "✅" : "❌"}</span>
+      <span className="text-white">{type === "success" ? <IconCheck /> : <IconX />}</span>
       <span className="font-medium">{message}</span>
-      <button onClick={onClose} className="ml-2 opacity-70 hover:opacity-100">✕</button>
+      <button onClick={onClose} className="ml-2 opacity-70 hover:opacity-100" aria-label="Close">✕</button>
     </div>
   );
 }
@@ -466,35 +493,7 @@ function Dashboard() {
             <div className="grid lg:grid-cols-3 gap-6">
               
               {/* Premium x402 section */}
-              <div className="lg:col-span-3 p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl backdrop-blur-sm card-shine">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-xl font-semibold">Premium (x402 Paywall)</h3>
-                    <p className="text-sm text-[#6a7a88] mt-1">Unlock premium APIs with mUSDC via HTTP 402 + on-chain receipts.</p>
-                  </div>
-                  <Link className="text-sm text-[#FF4E00] hover:underline" href="/premium">Open Premium Hub →</Link>
-                </div>
-
-                <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-3">
-                  {[
-                    { key: "compute", title: "Compute", desc: "Risk score + recommended limits" },
-                    { key: "quote", title: "Quote", desc: "Tiered pricing & terms" },
-                    { key: "agent-config", title: "Agent Config", desc: "Pro policy JSON" },
-                    { key: "dataset", title: "Dataset", desc: "Premium export feed" },
-                  ].map((x) => (
-                    <div key={x.key} className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl">
-                      <div className="font-semibold">{x.title}</div>
-                      <div className="text-xs text-[#6a7a88] mt-1">{x.desc}</div>
-                      <Link
-                        className="inline-block mt-3 text-sm font-semibold text-white bg-[#FF4E00] hover:bg-[#E64500] px-3 py-2 rounded-lg"
-                        href={`/premium?endpoint=${x.key}`}
-                      >
-                        Unlock via x402
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <PremiumSection />
 
               <div className="lg:col-span-2">
                 <div className="flex gap-1 p-1 bg-[#051525] border border-[#0a2535] rounded-xl mb-6">

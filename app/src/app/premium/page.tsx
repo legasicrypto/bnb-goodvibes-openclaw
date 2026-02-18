@@ -182,6 +182,19 @@ function PremiumInner() {
         "x-legasi-payment-id": challenge.paymentId,
         "x-legasi-signature": signature,
       });
+
+      // Persist proof so dashboard can show premium sections as unlocked (session-local, best-effort).
+      try {
+        const ep = (selected.split("/").pop() || "").trim();
+        const key = ep === "compute" ? "compute" : ep === "quote" ? "quote" : ep === "agent-config" ? "agent-config" : ep === "dataset" ? "dataset" : "";
+        if (key && payer) {
+          localStorage.setItem(
+            `legasi:x402:${key}`,
+            JSON.stringify({ paymentId: challenge.paymentId, signature, payer, ts: Date.now() })
+          );
+        }
+      } catch {}
+
     } catch (e: any) {
       console.error(e);
       setError(e?.shortMessage || e?.message || "Payment failed");

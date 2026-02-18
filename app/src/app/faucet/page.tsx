@@ -45,8 +45,13 @@ export default function FaucetPage() {
       <div className="max-w-2xl mx-auto">
         <h1 className="text-3xl font-bold">Faucet</h1>
         <p className="mt-2 text-[#8a9aa8]">Mint test tokens for demo.</p>
-        <div className="mt-4 p-3 bg-[#FF4E00]/10 border border-[#FF4E00]/30 rounded-xl text-sm text-[#FF4E00]">
-          ⚠️ If contracts were redeployed, your old tokens are invalid. Mint fresh tokens here.
+        <div className="mt-4 p-3 bg-[#FF4E00]/10 border border-[#FF4E00]/30 rounded-xl text-sm text-[#FF4E00] flex items-start gap-2">
+          <svg className="h-5 w-5 mt-0.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 9v4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/>
+            <path d="M12 17h.01" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/>
+            <path d="M10.3 4.6l-8 14A2 2 0 004 21h16a2 2 0 001.7-3l-8-14a2 2 0 00-3.4 0z" stroke="currentColor" strokeWidth="2"/>
+          </svg>
+          <div>If contracts were redeployed, your old tokens are invalid. Mint fresh tokens here.</div>
         </div>
 
         <div className="mt-6 flex items-center gap-3">
@@ -102,7 +107,13 @@ export default function FaucetPage() {
               }
             }}
           >
-            🚀 Mint All Tokens
+            <span className="inline-flex items-center gap-2">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 19l14-7L5 5v14z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+                <path d="M19 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+              Mint All Tokens
+            </span>
           </button>
         </div>
 
