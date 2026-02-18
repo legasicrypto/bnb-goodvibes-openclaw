@@ -5,7 +5,8 @@
   "scripts": {
     "build": "hardhat compile",
     "test": "hardhat test",
-    "deploy": "hardhat run scripts/deploy-all.ts --network skale",
+    "deploy": "hardhat run scripts/deploy-all.ts --network bscTestnet",
+    "smoke:bsc": "hardhat run scripts/smoke-bsc.ts --network bscTestnet",
     "lint": "echo 'no lint'"
   },
   "devDependencies": {
