@@ -119,6 +119,24 @@ function PremiumInner() {
   });
   const usdcBalance = usdcBalanceRaw ? Number(formatUnits(usdcBalanceRaw, 6)) : 0;
 
+  function prettyX402Error(code: string | undefined, status: number) {
+    const c = (code || "unknown").toLowerCase();
+    if (c === "missing_payer") return "Connect your wallet, then refresh.";
+    if (c === "signature_mismatch") return "Signature mismatch. Re-sign the x402 message and retry.";
+    if (c === "x402_disabled") return "x402 is disabled for this agent. Enable x402 in Agent Configuration (dashboard), then retry.";
+
+    if (c === "receipt_not_found") return "Receipt not found yet. Wait a few seconds, then retry the premium request.";
+    if (c === "unpaid") return "Payment not detected. Make sure the pay() transaction is confirmed, then retry.";
+    if (c === "receipt_expired") return "This challenge expired. Refresh to get a new 402 challenge, then pay again.";
+
+    if (c.endsWith("_mismatch")) return "Receipt mismatch. Refresh the challenge and pay again.";
+    if (c === "x402_policy_unavailable") return "BNB testnet RPC is flaky right now. Retry in a few seconds.";
+
+    // Generic fallbacks
+    if (status >= 500) return "Server error. Retry in a few seconds.";
+    return `Request failed (${status}).`;
+  }
+
   const fetchPremium = useCallback(async (headers?: Record<string, string>) => {
     setError(null);
     setLastApproveTx(null);
@@ -143,7 +161,7 @@ function PremiumInner() {
     }
 
     if (!res.ok) {
-      setError(json?.error || `Request failed (${res.status})`);
+      setError(prettyX402Error(json?.error, res.status));
       setStatus(null);
       return;
     }
@@ -151,7 +169,7 @@ function PremiumInner() {
     setChallenge(null);
     setResult(json);
     setStatus("Access granted ✓");
-  }, [payer]);
+  }, [payer, selected]);
 
   useEffect(() => {
     // attempt to load challenge on page view / endpoint change
