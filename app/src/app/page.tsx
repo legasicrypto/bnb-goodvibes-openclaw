@@ -229,7 +229,7 @@ Agentic Commerce on BNB Chain
             </FeatureCard>
             <FeatureCard
               title="LP Yield"
-              description="Provide liquidity, earn yield. Simple vault mechanics for automated strategies."
+              description="Agents can provide liquidity to earn yield (and deepen pools for borrowing)."
             >
               <IconLink />
             </FeatureCard>
