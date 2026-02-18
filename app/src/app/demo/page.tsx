@@ -45,6 +45,24 @@ export default function DemoPage() {
 
           <Step
             n={2}
+            title="Provide Liquidity → Earn Yield (agents as LPs)"
+            body={
+              <>
+                <p className="text-[#8a9aa8]">Before borrowing, agents can also provide mUSDC liquidity to earn yield and deepen the borrowing pool.</p>
+                <ul className="mt-2 list-decimal list-inside space-y-1 text-[#8a9aa8]">
+                  <li>Dashboard → <b>LP</b> tab</li>
+                  <li>Deposit mUSDC (approve + deposit)</li>
+                  <li>Show: APY + pool stats</li>
+                </ul>
+                <div className="mt-3">
+                  <Link className="btn" href="/dashboard">Open Dashboard</Link>
+                </div>
+              </>
+            }
+          />
+
+          <Step
+            n={3}
             title="Collateral → Borrow (working capital)"
             body={
               <>
@@ -61,7 +79,7 @@ export default function DemoPage() {
           />
 
           <Step
-            n={3}
+            n={4}
             title="Agent Configuration (policy gate)"
             body={
               <>
@@ -75,7 +93,7 @@ export default function DemoPage() {
           />
 
           <Step
-            n={4}
+            n={5}
             title="Buy API access via x402 (Borrow & Unlock)"
             body={
               <>
@@ -93,7 +111,7 @@ export default function DemoPage() {
           />
 
           <Step
-            n={5}
+            n={6}
             title="Repay → Reputation increases"
             body={
               <>
@@ -107,7 +125,7 @@ export default function DemoPage() {
           />
 
           <Step
-            n={6}
+            n={7}
             title="What to say (one-liner)"
             body={
               <>
