@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useAccount, useConnect, useDisconnect, useSignMessage, useWriteContract } from "wagmi";
 import { injected } from "wagmi/connectors";
 import { parseUnits, toHex } from "viem";
@@ -52,6 +53,14 @@ type Challenge = {
 };
 
 export default function PremiumPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-[#001520] text-white px-6 py-16"><div className="max-w-3xl mx-auto text-[#8a9aa8]">Loading…</div></main>}>
+      <PremiumInner />
+    </Suspense>
+  );
+}
+
+function PremiumInner() {
   const { address, isConnected } = useAccount();
   const { connect } = useConnect();
   const { disconnect } = useDisconnect();
@@ -62,8 +71,12 @@ export default function PremiumPage() {
   const [result, setResult] = useState<any>(null);
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [lastPaymentTx, setLastPaymentTx] = useState<`0x${string}` | null>(null);
+  const [lastApproveTx, setLastApproveTx] = useState<`0x${string}` | null>(null);
 
   const payer = address as `0x${string}` | undefined;
+
+  const searchParams = useSearchParams();
 
   const routes = useMemo(() => ([
     { key: "compute", name: "Compute", path: "/api/premium/compute" },
@@ -74,8 +87,17 @@ export default function PremiumPage() {
 
   const [selected, setSelected] = useState(routes[0]!.path);
 
+  useEffect(() => {
+    const ep = (searchParams.get("endpoint") || "").trim();
+    if (!ep) return;
+    const found = routes.find((r) => r.key === ep);
+    if (found) setSelected(found.path);
+  }, [searchParams, routes]);
+
   const fetchPremium = useCallback(async (headers?: Record<string, string>) => {
     setError(null);
+    setLastApproveTx(null);
+    setLastPaymentTx(null);
     setStatus("Requesting premium endpoint...");
 
     const res = await fetch(selected, {
@@ -126,15 +148,16 @@ export default function PremiumPage() {
       const signature = await signMessageAsync({ message: challenge.signingMessage });
 
       setStatus("Approving mUSDC...");
-      await writeContractAsync({
+      const approveHash = await writeContractAsync({
         address: challenge.token,
         abi: erc20Abi,
         functionName: "approve",
         args: [challenge.contract, BigInt(challenge.amount)],
       });
+      setLastApproveTx(approveHash);
 
       setStatus("Paying (on-chain receipt)...");
-      await writeContractAsync({
+      const payHash = await writeContractAsync({
         address: challenge.contract,
         abi: x402V2Abi,
         functionName: "pay",
@@ -147,6 +170,7 @@ export default function PremiumPage() {
           BigInt(challenge.expiresAt),
         ],
       });
+      setLastPaymentTx(payHash);
 
       setStatus("Retrying premium request...");
       await fetchPremium({
@@ -189,6 +213,33 @@ export default function PremiumPage() {
 
         {status && <div className="mt-6 p-4 bg-[#051525]/80 border border-[#0a2535] rounded-2xl text-sm text-[#8a9aa8]">{status}</div>}
         {error && <div className="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-2xl text-sm text-red-300">{error}</div>}
+
+        {(lastApproveTx || lastPaymentTx) && (
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            {lastApproveTx && (
+              <a
+                className="p-3 bg-[#001520] border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white"
+                href={`https://testnet.bscscan.com/tx/${lastApproveTx}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="font-semibold text-white">Approve tx</div>
+                <div className="break-all mt-1">{lastApproveTx}</div>
+              </a>
+            )}
+            {lastPaymentTx && (
+              <a
+                className="p-3 bg-[#001520] border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white"
+                href={`https://testnet.bscscan.com/tx/${lastPaymentTx}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="font-semibold text-white">Payment tx (x402 receipt)</div>
+                <div className="break-all mt-1">{lastPaymentTx}</div>
+              </a>
+            )}
+          </div>
+        )}
 
         <div className="mt-8 p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl">
           <div className="flex items-center justify-between gap-4">

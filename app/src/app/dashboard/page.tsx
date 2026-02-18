@@ -464,6 +464,38 @@ function Dashboard() {
             </div>
 
             <div className="grid lg:grid-cols-3 gap-6">
+              
+              {/* Premium x402 section */}
+              <div className="lg:col-span-3 p-6 bg-[#051525]/80 border border-[#0a2535] rounded-2xl backdrop-blur-sm card-shine">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-xl font-semibold">Premium (x402 Paywall)</h3>
+                    <p className="text-sm text-[#6a7a88] mt-1">Unlock premium APIs with mUSDC via HTTP 402 + on-chain receipts.</p>
+                  </div>
+                  <Link className="text-sm text-[#FF4E00] hover:underline" href="/premium">Open Premium Hub →</Link>
+                </div>
+
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-4 gap-3">
+                  {[
+                    { key: "compute", title: "Compute", desc: "Risk score + recommended limits" },
+                    { key: "quote", title: "Quote", desc: "Tiered pricing & terms" },
+                    { key: "agent-config", title: "Agent Config", desc: "Pro policy JSON" },
+                    { key: "dataset", title: "Dataset", desc: "Premium export feed" },
+                  ].map((x) => (
+                    <div key={x.key} className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl">
+                      <div className="font-semibold">{x.title}</div>
+                      <div className="text-xs text-[#6a7a88] mt-1">{x.desc}</div>
+                      <Link
+                        className="inline-block mt-3 text-sm font-semibold text-white bg-[#FF4E00] hover:bg-[#E64500] px-3 py-2 rounded-lg"
+                        href={`/premium?endpoint=${x.key}`}
+                      >
+                        Unlock via x402
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               <div className="lg:col-span-2">
                 <div className="flex gap-1 p-1 bg-[#051525] border border-[#0a2535] rounded-xl mb-6">
                   {(["supply", "borrow", "repay", "withdraw"] as const).map((tab) => (
