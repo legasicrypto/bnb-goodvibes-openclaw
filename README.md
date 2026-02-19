@@ -2,6 +2,8 @@
 
 **x402 Payment Protocol + Credit Infrastructure for AI Agents on BNB Chain.**
 
+> North star: Agents borrow working capital, pay APIs via HTTP 402 + on-chain receipts, and earn better terms through repayment reputation.
+
 > 🛒 **Agentic Commerce**: AI agents buying, selling, and paying for services — autonomously.
 
 🌐 **Live Demo:** https://bnb.legasi.io
@@ -66,6 +68,16 @@ Agent → Service (HTTP 402) → Agent pays via X402USDCReceipt.pay() → Servic
 See `docs/DEPLOYMENTS.md` for full details.
 
 ---
+
+## Judges Quick Start (2 minutes)
+
+- Demo runbook: https://bnb.legasi.io/demo
+- On-chain proof (contracts + proof tx): https://bnb.legasi.io/proof
+- Reproducibility check:
+
+```bash
+npm run judge:demo
+```
 
 ## Quick Start
 
@@ -208,6 +220,10 @@ await wallet.writeContract({
 See `docs/AGENT_FLOW.md` for complete examples.
 
 ---
+
+## Deploy
+
+See: `docs/DEPLOY.md`
 
 ## Documentation
 

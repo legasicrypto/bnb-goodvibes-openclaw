@@ -13,7 +13,10 @@ export default function DemoPage() {
               A 7–10 minute, judge-friendly walkthrough: <span className="text-white">Collateral → Credit → x402 Payments → Reputation</span>.
             </p>
           </div>
-          <Link className="text-sm text-[#FF4E00] hover:underline" href="/dashboard">Go to Dashboard →</Link>
+          <div className="flex flex-col items-end gap-2">
+            <Link className="text-sm text-[#FF4E00] hover:underline" href="/dashboard">Go to Dashboard →</Link>
+            <Link className="text-sm text-[#8a9aa8] hover:text-white hover:underline" href="/proof">On-chain proof →</Link>
+          </div>
         </div>
 
         <div className="mt-8 grid gap-4">

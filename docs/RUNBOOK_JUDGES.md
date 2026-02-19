@@ -96,6 +96,19 @@ If mint fails:
 
 ## 3) Plan B (if something goes wrong)
 
+### If the network is unstable (DO THIS)
+1. Open the proof page (fastest): https://bnb.legasi.io/proof
+2. Open Deployments + proof tx: `docs/DEPLOYMENTS.md`
+3. Show the 3 proof transactions on BscScan (Borrow, Repay, x402 pay()).
+4. Run reproducibility check from repo root:
+
+```bash
+npm run judge:demo
+```
+
+What to say:
+- “Even if the testnet is flaky, the on-chain proof is verifiable on BscScan, and the repo reproduces via smoke test + frontend build.”
+
 ### RPC instability
 - Use another public RPC in the frontend env (NEXT_PUBLIC_RPC_URL) and redeploy frontend.
 - For the demo itself: switch wallet RPC (if configured) or retry after 10–20s.
@@ -104,7 +117,7 @@ If mint fails:
 - Go back to faucet and mint again (fresh tokens).
 
 ### Worst case
-- Show on-chain contracts in BscScan + run tests locally (15/15 passing) + walk through docs/DEMO_FLOW.md.
+- Show on-chain contracts in BscScan + run `npm run judge:demo` + walk through docs/DEMO_FLOW.md.
 
 ---
 
