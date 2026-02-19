@@ -97,6 +97,10 @@ export default function RootLayout({
             >
               Explorer
             </a>
+            <span className="mx-2 opacity-70">•</span>
+            <span className="font-mono text-[10px] sm:text-xs">
+              Build: {(process.env.VERCEL_GIT_COMMIT_SHA || "dev").slice(0, 7)}
+            </span>
           </div>
           <div className="pt-8">{children}</div>
         </WalletProvider>
