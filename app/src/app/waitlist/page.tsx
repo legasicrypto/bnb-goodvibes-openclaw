@@ -96,7 +96,7 @@ export default function WaitlistPage() {
   return (
     <main className="min-h-screen bg-[#001520] text-white gradient-bg">
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-[#001520]/80 backdrop-blur-xl border-b border-[#0a2535]">
+      <nav className="sticky top-8 z-50 bg-[#001520]/80 backdrop-blur-xl border-b border-[#0a2535]">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <img src="/legasi-logo.svg" alt="Legasi" className="h-8 w-auto" />

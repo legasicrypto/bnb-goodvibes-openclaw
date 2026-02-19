@@ -1,12 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import { CONTRACTS, NETWORK_CONFIG } from "@/lib/evmContracts";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#001520] text-white gradient-bg">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#001520]/80 backdrop-blur-xl border-b border-[#0a2535]">
+      <nav className="fixed top-8 left-0 right-0 z-50 bg-[#001520]/80 backdrop-blur-xl border-b border-[#0a2535]">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center" aria-label="Go to Home">
             <img src="/legasi-logo.svg" alt="Legasi" className="h-8 w-auto" />
@@ -316,15 +317,15 @@ Agentic Commerce on BNB Chain
             </div>
 
             <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
-              <a className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl hover:border-[#FF4E00]/40 transition-colors" href={`https://testnet.bscscan.com/address/${"0x06bd127D48D9b82885b2692628d3bf12CdFCC5d7"}`} target="_blank" rel="noreferrer">
+              <a className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl hover:border-[#FF4E00]/40 transition-colors" href={`${NETWORK_CONFIG.explorer}/address/${CONTRACTS.lending}`} target="_blank" rel="noreferrer">
                 <div className="text-[#8a9aa8] text-xs">LegasiLending</div>
                 <div className="mt-1 font-mono text-xs break-all">0x06bd…C5d7</div>
               </a>
-              <a className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl hover:border-[#FF4E00]/40 transition-colors" href={`https://testnet.bscscan.com/address/${"0xDd5605472769C91C3592023A445f1B4aB0cAED7a"}`} target="_blank" rel="noreferrer">
+              <a className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl hover:border-[#FF4E00]/40 transition-colors" href={`${NETWORK_CONFIG.explorer}/address/${CONTRACTS.lp}`} target="_blank" rel="noreferrer">
                 <div className="text-[#8a9aa8] text-xs">LegasiLP (yield vault)</div>
                 <div className="mt-1 font-mono text-xs break-all">0xDd56…ED7a</div>
               </a>
-              <a className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl hover:border-[#FF4E00]/40 transition-colors" href={`https://testnet.bscscan.com/address/${"0x570BF4EdE1029c7Bc610f507c7D7a252F7328F24"}`} target="_blank" rel="noreferrer">
+              <a className="p-4 bg-[#001520] border border-[#0a2535] rounded-xl hover:border-[#FF4E00]/40 transition-colors" href={`${NETWORK_CONFIG.explorer}/address/${CONTRACTS.x402v2}`} target="_blank" rel="noreferrer">
                 <div className="text-[#8a9aa8] text-xs">X402USDCReceipt (v2)</div>
                 <div className="mt-1 font-mono text-xs break-all">0x570B…8F24</div>
               </a>

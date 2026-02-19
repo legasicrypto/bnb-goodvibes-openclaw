@@ -85,7 +85,21 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-[#001520] text-white antialiased`}>
-        <WalletProvider>{children}</WalletProvider>
+        <WalletProvider>
+          <div className="fixed top-0 left-0 right-0 z-[60] h-8 bg-[#FF4E00] text-black flex items-center justify-center text-xs sm:text-sm font-semibold px-3">
+            <span>BNB Smart Chain Testnet (chainId 97) — judge demo</span>
+            <span className="mx-2 opacity-70">•</span>
+            <a
+              className="underline underline-offset-2"
+              href={"https://testnet.bscscan.com"}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Explorer
+            </a>
+          </div>
+          <div className="pt-8">{children}</div>
+        </WalletProvider>
       </body>
     </html>
   );

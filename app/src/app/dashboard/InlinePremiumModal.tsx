@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAccount, usePublicClient, useReadContract, useSignMessage, useWriteContract } from "wagmi";
 import { formatUnits } from "viem";
-import { CONTRACTS } from "@/lib/evmContracts";
+import { CONTRACTS, NETWORK_CONFIG } from "@/lib/evmContracts";
 
 const lendingAbi = [
   { name: "initializePosition", type: "function", stateMutability: "nonpayable", inputs: [], outputs: [] },
@@ -299,9 +299,9 @@ export default function InlinePremiumModal({
 
           {(borrowTx || approveTx || payTx) && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
-              {borrowTx && <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`https://testnet.bscscan.com/tx/${borrowTx}`} target="_blank" rel="noreferrer">Borrow tx</a>}
-              {approveTx && <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`https://testnet.bscscan.com/tx/${approveTx}`} target="_blank" rel="noreferrer">Approve tx</a>}
-              {payTx && <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`https://testnet.bscscan.com/tx/${payTx}`} target="_blank" rel="noreferrer">Pay tx</a>}
+              {borrowTx && <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`${NETWORK_CONFIG.explorer}/tx/${borrowTx}`} target="_blank" rel="noreferrer">Borrow tx</a>}
+              {approveTx && <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`${NETWORK_CONFIG.explorer}/tx/${approveTx}`} target="_blank" rel="noreferrer">Approve tx</a>}
+              {payTx && <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`${NETWORK_CONFIG.explorer}/tx/${payTx}`} target="_blank" rel="noreferrer">Pay tx</a>}
             </div>
           )}
 

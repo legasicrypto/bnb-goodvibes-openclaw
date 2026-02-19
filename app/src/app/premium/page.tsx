@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useAccount, useConnect, useDisconnect, usePublicClient, useReadContract, useSignMessage, useWriteContract } from "wagmi";
 import { injected } from "wagmi/connectors";
 import { parseUnits, toHex, formatUnits } from "viem";
-import { CONTRACTS } from "@/lib/evmContracts";
+import { CONTRACTS, NETWORK_CONFIG } from "@/lib/evmContracts";
 
 const lendingAbi = [
   { name: "initializePosition", type: "function", stateMutability: "nonpayable", inputs: [], outputs: [] },
@@ -311,7 +311,7 @@ function PremiumInner() {
             {lastApproveTx && (
               <a
                 className="p-3 bg-[#001520] border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white"
-                href={`https://testnet.bscscan.com/tx/${lastApproveTx}`}
+                href={`${NETWORK_CONFIG.explorer}/tx/${lastApproveTx}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -322,7 +322,7 @@ function PremiumInner() {
             {lastPaymentTx && (
               <a
                 className="p-3 bg-[#001520] border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white"
-                href={`https://testnet.bscscan.com/tx/${lastPaymentTx}`}
+                href={`${NETWORK_CONFIG.explorer}/tx/${lastPaymentTx}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -413,7 +413,7 @@ function PremiumInner() {
               {challenge?.contract && (
                 <a
                   className="text-sm text-[#FF4E00] hover:underline"
-                  href={`https://testnet.bscscan.com/address/${challenge.contract}`}
+                  href={`${NETWORK_CONFIG.explorer}/address/${challenge.contract}`}
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -432,9 +432,9 @@ function PremiumInner() {
             Tip: this is how agents buy API access autonomously — 402 challenge → on-chain payment → retry with receipt proof.
           </div>
           <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-2 text-xs">
-            <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`https://testnet.bscscan.com/address/${CONTRACTS.lending}`} target="_blank" rel="noreferrer">Lending contract →</a>
-            <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`https://testnet.bscscan.com/address/${CONTRACTS.lp}`} target="_blank" rel="noreferrer">LP vault (yield) →</a>
-            <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`https://testnet.bscscan.com/address/${CONTRACTS.x402v2}`} target="_blank" rel="noreferrer">x402 receipt (v2) →</a>
+            <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`${NETWORK_CONFIG.explorer}/address/${CONTRACTS.lending}`} target="_blank" rel="noreferrer">Lending contract →</a>
+            <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`${NETWORK_CONFIG.explorer}/address/${CONTRACTS.lp}`} target="_blank" rel="noreferrer">LP vault (yield) →</a>
+            <a className="p-3 bg-[#051525]/80 border border-[#0a2535] rounded-xl text-[#8a9aa8] hover:text-white" href={`${NETWORK_CONFIG.explorer}/address/${CONTRACTS.x402v2}`} target="_blank" rel="noreferrer">x402 receipt (v2) →</a>
           </div>
         </div>
       </div>
