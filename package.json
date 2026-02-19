@@ -8,6 +8,7 @@
     "deploy": "hardhat run scripts/deploy-all.ts --network bscTestnet",
     "smoke:bsc": "hardhat run scripts/smoke-bsc.ts --network bscTestnet",
     "agent:e2e": "npx ts-node scripts/agent-e2e.ts",
+    "judge:demo": "npm run smoke:bsc && npm --prefix app run build && echo '\nJudge quick links:' && echo ' - Demo: https://bnb.legasi.io/demo' && echo ' - Runbook: docs/RUNBOOK_JUDGES.md' && echo ' - Deployments: docs/DEPLOYMENTS.md'",
     "lint": "echo 'no lint'"
   },
   "devDependencies": {
